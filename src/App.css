@@ -1,3 +1,31 @@
+#puzzle {
+  display: inline-block;
+  border: 1px solid black;
+  padding: 3vw;
+}
+
+#puzzle > div { /* rows */
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* style for each square in the puzzle */
+.puzzleSquare {
+  height: 7vw;
+  width: 7vw;
+  text-transform: uppercase;
+  background-color: white;
+  border: 0;
+  font: 5vw sans-serif;
+}
+
+
+
+
+
+
+
+
 .App {
   text-align: center;
 }
