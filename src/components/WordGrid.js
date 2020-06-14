@@ -7,8 +7,14 @@ let x = 0;
 const WordGrid = ({puzzle}) => (
       
   <div id="puzzle">
-    {puzzle.map(p => (
-      <WordRow rowLength={p.length} puzzle={p} y={y+=1} x={x}/>
+    {puzzle.map((p, i) => (
+      <WordRow
+        // key="jdasd"
+        rowLength={p.length}
+        puzzle={p}
+        y={y+=1}
+        x={x}
+      />
     ))
     }
   </div>

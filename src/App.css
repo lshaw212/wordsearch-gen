@@ -1,7 +1,8 @@
 #puzzle {
+  /* width: 50%; */
   display: inline-block;
   border: 1px solid black;
-  padding: 3vw;
+  /* padding: 3vw; */
 }
 
 #puzzle > div { /* rows */
