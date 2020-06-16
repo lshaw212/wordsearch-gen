@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { setEmptyPuzzle, setFilledPuzzle, addWord } from './components/GenerateGrid';
+import { setFilledPuzzle, addWord } from './components/GenerateGrid';
 import WordGrid from './components/WordGrid';
 import './App.css';
 
@@ -8,7 +8,7 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      puzzle: setEmptyPuzzle()
+      // puzzle: setEmptyPuzzle()
     }
   }
 
