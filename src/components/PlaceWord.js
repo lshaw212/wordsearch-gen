@@ -4,76 +4,61 @@ const orientationsArray = ["forward", "back", "up", "down", "northEast", "southE
 
 // messy, clean up
 const orientations = {
-  forward: function(word, puzzle, pos){
-    try{
+  forward: function(word, length, puzzle, pos, size){
+    if(pos[0]+length <= size){
       return word.every(function(val,i){
-        return puzzle[pos[0]+i][pos[1]] === '' || puzzle[pos[0]+i][pos[1]] === val;
+        return puzzle[pos[1]][pos[0]+i] === '' || puzzle[pos[1]][pos[0]+i] === val;
       });
-    } catch {
-
     }
   },
-  back: function(word, puzzle, pos){
-    try{
+  back: function(word, length, puzzle, pos, size){
+    if(pos[0]-length >= 0){
       return word.every(function(val,i){
-        return puzzle[pos[0]-i][pos[1]] === '' || puzzle[pos[0]-i][pos[1]] === val;
+        return puzzle[pos[1]][pos[0]-i] === '' || puzzle[pos[1]][pos[0]-i] === val;
       });
-    } catch {
-      
     }
   },
-  up: function(word, puzzle, pos){
-    try{
+  up: function(word, length, puzzle, pos, size){
+    if(pos[1]-length >= 0){
+      console.log(pos[1]-length);
       return word.every(function(val,i){
-        return puzzle[pos[0]][pos[1]-i] === '' || puzzle[pos[0]][pos[1]-i] === val;
+        return puzzle[pos[1]-i][pos[0]] === '' || puzzle[pos[1]-i][pos[0]] === val;
       });
-    } catch {
-      
     }
   },
-  down: function(word, puzzle, pos){
-    try{
+  down: function(word, length, puzzle, pos, size){
+    if(pos[1]+length <= size){
       return word.every(function(val,i){
-        return puzzle[pos[0]][pos[1]+i] === '' || puzzle[pos[0]][pos[1]+i] === val;
+        return puzzle[pos[1]+i][pos[0]] === '' || puzzle[pos[1]+i][pos[0]] === val;
       });
-    } catch {
-      
     }
   },
-  northEast: function(word, puzzle, pos){
-    try{
+  northEast: function(word, length, puzzle, pos, size){
+    if(pos[0]+length <= size && pos[1]-length >=0){
       return word.every(function(val,i){
-        return puzzle[pos[0]+i][pos[1]-i] === '' || puzzle[pos[0]+i][pos[1]-i] === val;
+        return puzzle[pos[1]-i][pos[0]+i] === '' || puzzle[pos[1]-i][pos[0]+i] === val;
       });
-    } catch {
-      
     }
   },
-  southEast: function(word, puzzle, pos){
-    try{
+  southEast: function(word, length, puzzle, pos, size){
+    if(pos[0]+length <= size && pos[1]+length <=size){
       return word.every(function(val,i){
-        return puzzle[pos[0]+i][pos[1]+i] === '' || puzzle[pos[0]+i][pos[1]+i] === val;
+        return puzzle[pos[1]+i][pos[0]+i] === '' || puzzle[pos[1]+i][pos[0]+i] === val;
       });
-    } catch {
-      
     }
   },
-  southWest: function(word, puzzle, pos){
-    try{
+  southWest: function(word, length, puzzle, pos, size){
+    if(pos[0]-length >= 0 && pos[1]+length <=size){
       return word.every(function(val,i){
-        return puzzle[pos[0]-i][pos[1]+i] === '' || puzzle[pos[0]-i][pos[1]+i] === val;
+        return puzzle[pos[1]+i][pos[0]-i] === '' || puzzle[pos[1]+i][pos[0]-i] === val;
       });
-    } catch {
-      
     }
   },
-  northWest: function(word, puzzle, pos){
-    try{
+  northWest: function(word, length, puzzle, pos, size){
+    if(pos[0]-length >= 0 && pos[1]-length >=0){
       return word.every(function(val,i){
-        return puzzle[pos[0]-i][pos[1]-i] === '' || puzzle[pos[0]-i][pos[1]-i] === val;
+        return puzzle[pos[1]-i][pos[0]-i] === '' || puzzle[pos[1]-i][pos[0]-i] === val;
       });
-    } catch {
-      
     }
   }
 }
@@ -87,63 +72,37 @@ const checkCells = (word, puzzle, pos, forumla) => {
   })
 }
 
+// Checking position of the grid, that a word could fit into any of the directions
+const checkValidCell = (length,size,x,y) => {
+  if(((x+length)<=size || (x-length)>=0) || ((y+length)<=size || (y-length)>=0))
+    return true;
+  else
+    return false;
+}
+
+
 export const findDirections = (word, length, puzzle, pos, size) => {
-  
   let wordArr = [], directionArr = [];
   wordArr = word.split('');
-  let forward = pos[0]+length <= size;
-
-  // orientations["forward"]("yes");
 
   orientationsArray.forEach(function(ori, i){
-    if(orientations[ori](wordArr,puzzle,pos))
+    if(orientations[ori](wordArr, length, puzzle, pos, size))
       directionArr.push(ori);
-    // puzzle[pos[1]].splice((pos[0]+i),1,val);
   });
-
-  // if(forward){
-  //   directionArr.push("forward");
-  // if(pos[0]-length >= 0){
-  //   directionArr.push("back");
-  // }
-  // if(pos[1]-length >= 0){
-  //   directionArr.push("up");
-  // }
-  // if(pos[1]+length <= size){
-  //   directionArr.push("down");
-  // }
-  // if(pos[0]+length <= size && pos[1]-length >=0){
-  //   directionArr.push("NE-Diag");
-  // }
-  // if(pos[0]+length <= size && pos[1]+length <=size){
-  //   directionArr.push("SE-Diag");
-  // }
-  // if(pos[0]-length >= 0 && pos[1]+length <=size){
-  //   directionArr.push("SW-Diag");
-  // }
-  // if(pos[0]-length >= 0 && pos[1]-length >=0){
-  //   directionArr.push("NW-Diag");
-  // }
-
-  // directionArr=["forward", "back", "up", "down", "NE-Diag", "SE-Diag", "SW-Diag", "NW-Diag"];
-
   return directionArr;
 }
 
+//
+// //
+// These are the forumlas to place words in our array.
+// //
+//
 export const fwdCheck = (word, puzzle, pos) => {
   try {
-    let arr = [];
-    arr = word.split('');
-    // if(checkCells(word, puzzle, pos)){
-      arr.forEach(function(val, i){
-        puzzle[pos[1]].splice((pos[0]+i),1,val);
-      });
-      console.log(puzzle);
-      return puzzle;
-    // } else {
-    //   console.log("Word cannot be placed, add code to try again");
-    //   return false;
-    // }
+    word.forEach(function(val, i){
+      puzzle[pos[1]].splice((pos[0]+i),1,val);
+    });
+    console.log(puzzle);
     return puzzle;
   } catch {
     console.log("ERROR: Can't place word in forward position");
@@ -152,18 +111,11 @@ export const fwdCheck = (word, puzzle, pos) => {
 
 export const backCheck = (word, puzzle, pos) => {
   try {
-    let arr = [];
-    arr = word.split('');
-    // if(checkCells(word, puzzle, pos)){
-      arr.forEach(function(val, i){
-        puzzle[pos[1]].splice((pos[0]-i),1,val);
-      });
-      console.log(puzzle);
-      return puzzle;
-    // } else {
-    //   console.log("Word cannot be placed, add code to try again");
-    //   return false;
-    // }
+    word.forEach(function(val, i){
+      puzzle[pos[1]].splice((pos[0]-i),1,val);
+    });
+    console.log(puzzle);
+    return puzzle;
   } catch {
     console.log("ERROR: Can't place word in back position");
   }
@@ -171,37 +123,68 @@ export const backCheck = (word, puzzle, pos) => {
 }
 export const upCheck = (word, puzzle, pos) => {
   try {
-    let arr = [];
-    arr = word.split('');
-    // if(checkCells(word, puzzle, pos)){
-      arr.forEach(function(val, i){
-        puzzle[pos[1]-i].splice((pos[0]),1,val);
-      });
-      console.log(puzzle);
-      return puzzle;
-    // } else {
-    //   console.log("Word cannot be placed, add code to try again");
-    //   return false;
-    // }
+    word.forEach(function(val, i){
+      puzzle[pos[1]-i].splice((pos[0]),1,val);
+    });
+    console.log(puzzle);
+    return puzzle;
   } catch {
     console.log("ERROR: Can't place word in up position");
   }
 }
 export const downCheck = (word, puzzle, pos) => {
   try{
-    let arr = [];
-    arr = word.split('');
-    // if(checkCells(word, puzzle, pos)){
-      arr.forEach(function(val, i){
-        puzzle[pos[1]+i].splice((pos[0]),1,val);
-      });
-      console.log(puzzle);
-      return puzzle;
-    // } else {
-    //   console.log("Word cannot be placed, add code to try again");
-    //   return false;
-    // }
+    word.forEach(function(val, i){
+      puzzle[pos[1]+i].splice((pos[0]),1,val);
+    });
+    console.log(puzzle);
+    return puzzle;
   } catch {
     console.log("ERROR: Can't place word in down position");
+  }
+}
+export const neCheck = (word, puzzle, pos) => {
+  try{
+    word.forEach(function(val, i){
+      puzzle[pos[1]-i].splice((pos[0]+i),1,val);
+    });
+    console.log(puzzle);
+    return puzzle;
+  } catch {
+    console.log("ERROR: Can't place word in north east position");
+  }
+}
+export const seCheck = (word, puzzle, pos) => {
+  try{
+    word.forEach(function(val, i){
+      puzzle[pos[1]+i].splice((pos[0]+i),1,val);
+    });
+    console.log(puzzle);
+    return puzzle;
+  } catch {
+    console.log("ERROR: Can't place word in south east position");
+  }
+}
+export const swCheck = (word, puzzle, pos) => {
+  try{
+    word.forEach(function(val, i){
+      // console.log(puzzle[pos[1]]);
+      puzzle[pos[1]+i].splice((pos[0]-i),1,val);
+    });
+    console.log(puzzle);
+    return puzzle;
+  } catch {
+    console.log("ERROR: Can't place word in south west position");
+  }
+}
+export const nwCheck = (word, puzzle, pos) => {
+  try{
+    word.forEach(function(val, i){
+      puzzle[pos[1]-i].splice((pos[0]-i),1,val);
+    });
+    console.log(puzzle);
+    return puzzle;
+  } catch {
+    console.log("ERROR: Can't place word in north west position");
   }
 }

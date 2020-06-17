@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { setFilledPuzzle, addWord } from './components/GenerateGrid';
+import { setFilledPuzzle, addWord, retrievePuzzle, setEmptyPuzzle, generatePuzzle } from './components/GenerateGrid';
 import WordGrid from './components/WordGrid';
 import './App.css';
 
@@ -8,14 +8,18 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      // puzzle: setEmptyPuzzle()
+      puzzle: setEmptyPuzzle()
     }
   }
 
   testBtn = () => {
     // setEmptyPuzzle();
-    addWord(9,"samsung");
-    this.setState({puzzle:setFilledPuzzle()})
+    let testArr = ["samsung", "spring", "barn", "music", "hamster"];
+    // let testArr = ["christmas"];
+    // let testArr = ["booooom","zooooom"]
+    generatePuzzle(9,testArr);
+    // addWord(8,"samsung");
+    this.setState({puzzle:retrievePuzzle()})
   }
 
   render(){
@@ -24,7 +28,7 @@ class App extends Component {
       <div className="App">
         <h2>Word Search!</h2>
         {/* <div id="puzzle"></div> */}
-        {/* <WordGrid puzzle={this.state.puzzle}/> */}
+        <WordGrid puzzle={this.state.puzzle}/>
         <button onClick={this.testBtn}>Clicky!</button>
       </div>
     );

@@ -1,8 +1,25 @@
-import { fwdCheck, backCheck, upCheck, downCheck, findDirections, orientations } from './PlaceWord';
+import { fwdCheck, backCheck, upCheck, downCheck, neCheck, seCheck, swCheck, nwCheck, findDirections, orientations } from './PlaceWord';
 // Set letters to fill spots around the puzzle.
 // Look to generate letters based on common to the words the user is searchin for.
 
-const setEmptyPuzzle = (size) => {
+//To-add: Maybe use string? remove uncommon letters
+const rndLetters = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+
+let testPuzzle2 =[
+  ["","","","","","","","",""],
+  ["","","","","","","","",""],
+  ["","","","","","","","",""],
+  ["","","","","","","","",""],
+  ["","","","","","","","",""],
+  ["","","","","","","","",""],
+  ["","","","","","","","",""],
+  ["","","","","","","","",""],
+  ["","","","","","","","",""]
+];
+
+
+
+export const setEmptyPuzzle = (size) => {
   let puzzle = [];
   for (let i = 0; i < size; i++) {
     puzzle.push([]);
@@ -13,113 +30,86 @@ const setEmptyPuzzle = (size) => {
   return puzzle;
 }
 
+export const retrievePuzzle = () => {
+  return testPuzzle;
+}
 
-//To-add: Maybe use string? remove uncommon letters
-const rndLetters = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
-
-// let testPuzzle =[
-//   ["","","","","","","","",""],
-//   ["","","","","","","","",""],
-//   ["","","","","","","","",""],
-//   ["","","","","","","","",""],
-//   ["","","","","","","","b","b"],
-//   ["","","","","","","","",""],
-//   ["","","","","","","","",""],
-//   ["","","","","","","","",""],
-//   ["","","","","","","","",""]
-// ];
-
-let testPuzzle = setEmptyPuzzle(9);
+let testPuzzle
 
 let positionList = [];
 
-export const addWord = (size, word) => {
-  // let pos = [Math.floor(Math.random() * 9) + 1, Math.floor(Math.random() * 9)];
-  let pos = [0,0];
+export const generatePuzzle = (size, words) => {
+testPuzzle=setEmptyPuzzle(size);
+words.forEach(element => {
+  addWord(size, element);
+});
+fillPuzzle(testPuzzle);
+}
 
-  if(checkValidCell(word.length,(size+1),pos[0],pos[1])){
-    
-      console.log("Area checked: Word can be placed");
-      console.log("Position: "+pos)
-      // console.log(testPuzzle);
-      positionList = findDirections(word, word.length, testPuzzle, pos, size);
-      direction(word, pos, positionList);
-      console.log(positionList);
-  } else {
-    console.log("Area Checked: CANNOT PLACE WORD");
+// ISSUES:
+// if position is valid, but you can't find directions, the word is skipped.
+export const addWord = (size, word) => {
+
+  let wordPlaced = false;
+  while(!wordPlaced){
+    let pos = [Math.floor(Math.random() * 9), Math.floor(Math.random() * 9)];
+    // let pos = [0,0];
+  
+    if(checkValidCell(word.length,(size+1),pos[0],pos[1])){
+      
+        
+        positionList = findDirections(word, word.length, testPuzzle, pos, size);
+        if(positionList.length > 0){
+          console.log(positionList);
+          direction(word, pos, positionList);
+          wordPlaced = true;
+        }
+        
+    } else {
+      console.log("Area Checked: CANNOT PLACE WORD");
+      console.log("Position: " + pos);
+    }
   }
+  console.log("Word has been placed")
+  return;
 }
 
 const direction = (word, pos, positionList) => {
-  // switch(Math.floor(Math.random() * 4)+1)
-  // switch(1)
-  // "forward", "back", "up", "down", "NE-Diag", "SE-Diag", "SW-Diag", "NW-Diag"
-  switch(positionList[Math.floor(Math.random() * positionList.length)])
+  let rnd = positionList[Math.floor(Math.random() * positionList.length)], wordArr = [];
+  wordArr = word.split('');
+  switch(rnd)
   {
-    // forward
     case "forward":
-      fwdCheck(word, testPuzzle, pos)
+      fwdCheck(wordArr, testPuzzle, pos)
       console.log("forward");
       break;
     case "back":
-      backCheck(word, testPuzzle, pos)
+      backCheck(wordArr, testPuzzle, pos)
       console.log("back");
       break;
     case "up":
-      upCheck(word, testPuzzle, pos)
+      upCheck(wordArr, testPuzzle, pos)
       console.log("up");
       break;
     case "down":
-      downCheck(word, testPuzzle, pos)
+      downCheck(wordArr, testPuzzle, pos)
       console.log("down");
       break;
-    case "NE-Diag":
-      console.log("NE-Diag");
+    case "northEast":
+      neCheck(wordArr, testPuzzle, pos)
+      console.log("North East");
       break;
-    case "SE-Diag":
-      console.log("SE-Diag");
+    case "southEast":
+      seCheck(wordArr, testPuzzle, pos)
+      console.log("South East");
       break;
-    case "SW-Diag":
-      console.log("SW-Diag");
+    case "southWest":
+      swCheck(wordArr, testPuzzle, pos)
+      console.log("South West");
       break;
-    case "NW-Diag":
-      console.log("NW-Diag");
-      break;
-    case 1:
-      console.log("Case 1: Forward Position");
-      if(fwdCheck(word, testPuzzle, pos)){
-        console.log("worked");
-      } else {
-        console.log("Nope");
-      }
-      break;
-    // back
-    case 2:
-      console.log("Case 2: Back Position");
-      if(backCheck(word, testPuzzle, pos)){
-        console.log("worked");
-      } else {
-        console.log("Nope");
-      }
-      break;
-    // up
-    case 3:
-      console.log("Case 3: Up Position");
-      if(upCheck(word, testPuzzle, pos)){
-        console.log("worked");
-      } else {
-        console.log("Nope");
-      }
-      break;
-    // down
-    case 4:
-      console.log("Case 4: Down Position")
-      if(downCheck(word, testPuzzle, pos)){
-        console.log("worked");
-      } else {
-        console.log("Nope");
-      }
-      // checkMarker = false;
+    case "northWest":
+      nwCheck(wordArr, testPuzzle, pos)
+      console.log("North West");
       break;
     default:
       console.log("we hit default");
@@ -136,32 +126,13 @@ const checkValidCell = (length,size,x,y) => {
     return false;
 }
 
-export const fillBlanks = () => {
-  return "[]";
-}
-
-// Initalizes empty puzzle
-// export const setEmptyPuzzle = () => {
-//   let puzzle = [];
-//   for (let i = 0; i < 8; i++) {
-//     puzzle.push([]);
-//     for (let j = 0; j < 8; j++) {
-//       puzzle[i].push('');
-//     }
-//   }
-//   return puzzle;
-// }
-
 // Filling puzzle with random letters
-// To-add: Change this to only fill empty strings
-export const setFilledPuzzle = () => {
-  let puzzle = [];
-  for (let i = 0; i < 8; i++) {
-    puzzle.push([]);
-    for (let j = 0; j < 8; j++) {
-      puzzle[i].push(`${rndLetters[Math.floor(Math.random() * rndLetters.length)]}`);
+const fillPuzzle = (puzzle) => {
+  for (let i = 0; i < puzzle.length; i++) {
+    for (let j = 0; j < puzzle.length; j++) {
+      if(puzzle[i][j] === '')
+        puzzle[i].splice([j],1,`${rndLetters[Math.floor(Math.random() * rndLetters.length)]}`);
     }
   }
   return puzzle;
 }
-
