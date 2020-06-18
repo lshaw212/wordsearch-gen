@@ -3,6 +3,7 @@
   display: inline-block;
   border: 1px solid black;
   /* padding: 3vw; */
+  /* filter: blur(2px) */
 }
 
 #puzzle > div { /* rows */
@@ -12,12 +13,13 @@
 
 /* style for each square in the puzzle */
 .puzzleSquare {
-  height: 7vw;
-  width: 7vw;
+  height: 3vw;
+  width: 3vw;
   text-transform: uppercase;
-  background-color: white;
-  border: 0;
-  font: 5vw sans-serif;
+  background-color: transparent;
+  border: 1px solid #2c2b2b;
+  font: 2vw sans-serif;
+  color: #2c2b2b;
 }
 
 
@@ -26,7 +28,14 @@
 
 
 
+body {
+  background: linear-gradient(306deg, #b7f8db, #50a7c2);
+    background-size: 400% 400%;
 
+    -webkit-animation: background-gradient 30s ease infinite;
+    -moz-animation: background-gradient 30s ease infinite;
+    animation: background-gradient 30s ease infinite;
+}
 .App {
   text-align: center;
 }
@@ -64,4 +73,19 @@
   to {
     transform: rotate(360deg);
   }
+}
+@-webkit-keyframes background-gradient {
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+@-moz-keyframes background-gradient {
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+@keyframes background-gradient {
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
 }

@@ -2,7 +2,10 @@
 
 const orientationsArray = ["forward", "back", "up", "down", "northEast", "southEast", "southWest", "northWest"];
 
-// messy, clean up
+// Every orientation possible for our words to be positioned.
+// Each of these functions can be looped through in the direction function.
+// We check if the max length is possible to be placed in our word search.
+// If true, we check each position individually for it being empty or containing a similar value.
 const orientations = {
   forward: function(word, length, puzzle, pos, size){
     if(pos[0]+length <= size){
@@ -63,23 +66,6 @@ const orientations = {
   }
 }
 
-const checkCells = (word, puzzle, pos, forumla) => {
-  let arr = [];
-  arr = word.split('');
-  return arr.every(function(val, i){
-    // console.log("Check Cells");
-    return puzzle[pos[0]][pos[1]+i] === '' || puzzle[pos[0]][pos[1]+i] === val;
-  })
-}
-
-// Checking position of the grid, that a word could fit into any of the directions
-const checkValidCell = (length,size,x,y) => {
-  if(((x+length)<=size || (x-length)>=0) || ((y+length)<=size || (y-length)>=0))
-    return true;
-  else
-    return false;
-}
-
 
 export const findDirections = (word, length, puzzle, pos, size) => {
   let wordArr = [], directionArr = [];
@@ -92,11 +78,8 @@ export const findDirections = (word, length, puzzle, pos, size) => {
   return directionArr;
 }
 
-//
-// //
-// These are the forumlas to place words in our array.
-// //
-//
+// Once an orientation is possible, we can use one of the selected functions to place a word in the array.
+// Each of the functions is diffenent to place the word in a chosen orientation.
 export const fwdCheck = (word, puzzle, pos) => {
   try {
     word.forEach(function(val, i){
