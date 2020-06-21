@@ -67,6 +67,7 @@ const orientations = {
 }
 
 
+// Put the word through each orientation check to create a list of directions the word can be placed
 export const findDirections = (word, length, puzzle, pos, size) => {
   let wordArr = [], directionArr = [];
   wordArr = word.split('');

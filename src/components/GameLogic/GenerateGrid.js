@@ -1,21 +1,23 @@
-import { fwdCheck, backCheck, upCheck, downCheck, neCheck, seCheck, swCheck, nwCheck, findDirections, orientations } from './PlaceWord';
+import { fwdCheck, backCheck, upCheck, downCheck, neCheck, seCheck, swCheck, nwCheck, findDirections, orientations } from './Orientations';
 // Set letters to fill spots around the puzzle.
 // Look to generate letters based on common to the words the user is searchin for.
 
 //To-add: Maybe use string? remove uncommon letters
 const rndLetters = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
 
-let testPuzzle2 =[
-  ["","","","","","","","",""],
-  ["","","","","","","","",""],
-  ["","","","","","","","",""],
-  ["","","","","","","","",""],
-  ["","","","","","","","",""],
-  ["","","","","","","","",""],
-  ["","","","","","","","",""],
-  ["","","","","","","","",""],
-  ["","","","","","","","",""]
-];
+let puzzle, orientationList = [];
+
+// let testPuzzle2 =[
+//   ["","","","","","","","",""],
+//   ["","","","","","","","",""],
+//   ["","","","","","","","",""],
+//   ["","","","","","","","",""],
+//   ["","","","","","","","",""],
+//   ["","","","","","","","",""],
+//   ["","","","","","","","",""],
+//   ["","","","","","","","",""],
+//   ["","","","","","","","",""]
+// ];
 
 
 
@@ -31,19 +33,19 @@ export const setEmptyPuzzle = (size) => {
 }
 
 export const retrievePuzzle = () => {
-  return testPuzzle;
+  return puzzle;
 }
 
-let testPuzzle
 
-let positionList = [];
-
+// This function generates the puzzle in an array.
+// We take all the words and put them into the addWord function.
+// After all our words have been added, we fill up the array with random words.
 export const generatePuzzle = (size, words) => {
-testPuzzle=setEmptyPuzzle(size);
+puzzle=setEmptyPuzzle(size);
 words.forEach(element => {
   addWord(size, element);
 });
-fillPuzzle(testPuzzle);
+fillPuzzle(puzzle);
 }
 
 // ISSUES:
@@ -58,10 +60,10 @@ export const addWord = (size, word) => {
     if(checkValidCell(word.length,(size+1),pos[0],pos[1])){
       
         
-        positionList = findDirections(word, word.length, testPuzzle, pos, size);
-        if(positionList.length > 0){
-          console.log(positionList);
-          direction(word, pos, positionList);
+      orientationList = findDirections(word, word.length, puzzle, pos, size);
+        if(orientationList.length > 0){
+          console.log(orientationList);
+          direction(word, pos, orientationList);
           wordPlaced = true;
         }
         
@@ -74,41 +76,42 @@ export const addWord = (size, word) => {
   return;
 }
 
-const direction = (word, pos, positionList) => {
-  let rnd = positionList[Math.floor(Math.random() * positionList.length)], wordArr = [];
+// We randomize a orientation from our list and place the letters in that direction
+const direction = (word, pos, orientationList) => {
+  let rnd = orientationList[Math.floor(Math.random() * orientationList.length)], wordArr = [];
   wordArr = word.split('');
   switch(rnd)
   {
     case "forward":
-      fwdCheck(wordArr, testPuzzle, pos)
+      fwdCheck(wordArr, puzzle, pos)
       console.log("forward");
       break;
     case "back":
-      backCheck(wordArr, testPuzzle, pos)
+      backCheck(wordArr, puzzle, pos)
       console.log("back");
       break;
     case "up":
-      upCheck(wordArr, testPuzzle, pos)
+      upCheck(wordArr, puzzle, pos)
       console.log("up");
       break;
     case "down":
-      downCheck(wordArr, testPuzzle, pos)
+      downCheck(wordArr, puzzle, pos)
       console.log("down");
       break;
     case "northEast":
-      neCheck(wordArr, testPuzzle, pos)
+      neCheck(wordArr, puzzle, pos)
       console.log("North East");
       break;
     case "southEast":
-      seCheck(wordArr, testPuzzle, pos)
+      seCheck(wordArr, puzzle, pos)
       console.log("South East");
       break;
     case "southWest":
-      swCheck(wordArr, testPuzzle, pos)
+      swCheck(wordArr, puzzle, pos)
       console.log("South West");
       break;
     case "northWest":
-      nwCheck(wordArr, testPuzzle, pos)
+      nwCheck(wordArr, puzzle, pos)
       console.log("North West");
       break;
     default:

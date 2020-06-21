@@ -4,7 +4,7 @@ import WordRow from './WordRow';
 let y = 0;
 let x = 0;
 
-const WordGrid = ({puzzle}) => (
+const WordGrid = ({puzzle,mouseDown,mouseUp}) => (
       
   <div id="puzzle">
     {puzzle.map((p, i) => (
@@ -12,8 +12,10 @@ const WordGrid = ({puzzle}) => (
         // key="jdasd"
         rowLength={p.length}
         puzzle={p}
-        y={y+=1}
+        y={y+i}
         x={x}
+        mouseDown={mouseDown}
+        mouseUp={mouseUp}
       />
     ))
     }
