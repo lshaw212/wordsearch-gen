@@ -1,4 +1,4 @@
-import { fwdCheck, backCheck, upCheck, downCheck, neCheck, seCheck, swCheck, nwCheck, findDirections, orientations } from './Orientations';
+import { fwdCheck, backCheck, upCheck, downCheck, neCheck, seCheck, swCheck, nwCheck, findDirections } from './Orientations';
 // Set letters to fill spots around the puzzle.
 // Look to generate letters based on common to the words the user is searchin for.
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { setFilledPuzzle, addWord, retrievePuzzle, setEmptyPuzzle, generatePuzzle } from './components/GameLogic/GenerateGrid';
+import { retrievePuzzle, setEmptyPuzzle, generatePuzzle } from './components/GameLogic/GenerateGrid';
 import { checkWord } from './components/GameLogic/CheckWord';
 import WordGrid from './components/WordGrid';
 import WordList from './components/WordList';
@@ -21,11 +21,7 @@ class App extends Component {
   }
 
   testBtn = () => {
-    // setEmptyPuzzle();
-    // let testArr = ["christmas"];
-    // let testArr = ["boooom","zoooom"]
     generatePuzzle(9,testArr);
-    // addWord(8,"samsung");
     this.setState({puzzle:retrievePuzzle()})
     this.setState({wordList:testArr});
   }
