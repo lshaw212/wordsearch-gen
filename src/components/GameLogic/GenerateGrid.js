@@ -62,17 +62,17 @@ export const addWord = (size, word) => {
         
       orientationList = findDirections(word, word.length, puzzle, pos, size);
         if(orientationList.length > 0){
-          console.log(orientationList);
+          // console.log(orientationList);
           direction(word, pos, orientationList);
           wordPlaced = true;
         }
         
     } else {
-      console.log("Area Checked: CANNOT PLACE WORD");
-      console.log("Position: " + pos);
+      // console.log("Area Checked: CANNOT PLACE WORD");
+      // console.log("Position: " + pos);
     }
   }
-  console.log("Word has been placed")
+  // console.log("Word has been placed")
   return;
 }
 
@@ -84,35 +84,35 @@ const direction = (word, pos, orientationList) => {
   {
     case "forward":
       fwdCheck(wordArr, puzzle, pos)
-      console.log("forward");
+      // console.log("forward");
       break;
     case "back":
       backCheck(wordArr, puzzle, pos)
-      console.log("back");
+      // console.log("back");
       break;
     case "up":
       upCheck(wordArr, puzzle, pos)
-      console.log("up");
+      // console.log("up");
       break;
     case "down":
       downCheck(wordArr, puzzle, pos)
-      console.log("down");
+      // console.log("down");
       break;
     case "northEast":
       neCheck(wordArr, puzzle, pos)
-      console.log("North East");
+      // console.log("North East");
       break;
     case "southEast":
       seCheck(wordArr, puzzle, pos)
-      console.log("South East");
+      // console.log("South East");
       break;
     case "southWest":
       swCheck(wordArr, puzzle, pos)
-      console.log("South West");
+      // console.log("South West");
       break;
     case "northWest":
       nwCheck(wordArr, puzzle, pos)
-      console.log("North West");
+      // console.log("North West");
       break;
     default:
       console.log("we hit default");

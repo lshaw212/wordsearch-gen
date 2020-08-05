@@ -1,27 +1,24 @@
 export const checkWord = (puzzle, pos1, pos2) => {
 
-  let xDiff = pos1[0]-pos2[0], yDiff = pos1[1]-pos2[1];
+  let xDiff = pos2[0]-pos1[0], yDiff = pos2[1]-pos1[1];
 
   // Messy function, but checks if the 2 points makes an orientation.
   // First part checks that the value of both x's and both y's is the same value, meaning it is diagonal.
   //      - We also use Math.abs to remove the negative sign.
   // Second part checks if either of the x's or y's stays the same, which means it is going in one of the basic directions.
-  console.log(puzzle[pos1[1]][pos1[0]]);
-  console.log(puzzle[pos2[1]][pos2[0]]);
-  console.log(pos1);
-  console.log(pos2);
+
   // Could add to check that we don't click in the same spot
   if(((Math.abs(xDiff))-(Math.abs(yDiff))===0) || ((xDiff === 0) || (yDiff === 0))){
     
     // Following functions are very messy, looking at ways to improve this check, wanting to get this working to an extent first.
 
-    console.log("X Diff " + xDiff);
-    console.log("Y Diff " + yDiff);
-
-    const getString = () => {
-      // for (let i = 0; i < ; i++) {
-      // }
-
+    const getString = (x,y) => {
+      let str = '';
+      let length = Math.max(Math.abs(xDiff), Math.abs(yDiff));
+      for (let i = 0; i < (length + 1); i++) {
+        str = str + puzzle[(pos1[1]+(y*i))][(pos1[0]+(x*i))]
+      }
+      return str;
     }
     //
     //
@@ -32,10 +29,12 @@ export const checkWord = (puzzle, pos1, pos2) => {
       //negative y
       if(yDiff<0){
         console.log("Negative X, Negative Y");
+        return getString(-1,-1);
       }
       //positive y
       if(yDiff>0){
         console.log("Negative X, Positive Y");
+        return getString(-1,1);
       }
     }
     //
@@ -47,10 +46,12 @@ export const checkWord = (puzzle, pos1, pos2) => {
       //negative y
       if(yDiff<0){
         console.log("Positive X, Negative Y");
+        return getString(1,-1);
       }
       //positive y
       if(yDiff>0){
         console.log("Positive X, Positive Y");
+        return getString(1,1);
       }
     }
 
@@ -63,10 +64,12 @@ export const checkWord = (puzzle, pos1, pos2) => {
       //negative y
       if(yDiff<0){
         console.log("X axis doesn't move, Negative Y");
+        return getString(0,-1);
       }
       //positive y
       if(yDiff>0){
         console.log("X axis doesn't move, Positive Y");
+        return getString(0,1);
       }
       return;
     }
@@ -79,10 +82,12 @@ export const checkWord = (puzzle, pos1, pos2) => {
       //negative x
       if(xDiff<0){
         console.log("Negative X, Y axis doesn't move");
+        return getString(-1,0);
       }
       //positive x
       if(xDiff>0){
         console.log("Positive X, Y axis doesn't move");
+        return getString(1,0);
       }
       return;
     }

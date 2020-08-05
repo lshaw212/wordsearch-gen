@@ -23,7 +23,7 @@ const orientations = {
   },
   up: function(word, length, puzzle, pos, size){
     if(pos[1]-length >= 0){
-      console.log(pos[1]-length);
+      // console.log(pos[1]-length);
       return word.every(function(val,i){
         return puzzle[pos[1]-i][pos[0]] === '' || puzzle[pos[1]-i][pos[0]] === val;
       });

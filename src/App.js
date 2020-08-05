@@ -26,8 +26,6 @@ class App extends Component {
     this.setState({wordList:testArr});
   }
   mouseDown = (e, x, y) => {
-    // this.setState({pos1:x});
-    // console.log("pos1: " + this.state.pos1);
     this.setState((state, props) => ({
       pos1:[x,y]
    }), ()=>{
@@ -35,8 +33,6 @@ class App extends Component {
    });
   }
   mouseUp = (e, x, y) => {
-    // this.setState({pos2:[x,y]});
-    // console.log("pos2: " + this.state.pos2);
     this.setState((state, props) => ({
       pos2:[x,y]
    }), ()=>{
@@ -45,7 +41,8 @@ class App extends Component {
   }
 
   checkPositions = () => {
-    checkWord(this.state.puzzle, this.state.pos1, this.state.pos2);
+    let test = checkWord(this.state.puzzle, this.state.pos1, this.state.pos2);
+    console.log(test);
   }
 
   render(){
