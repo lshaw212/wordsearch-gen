@@ -3,6 +3,7 @@ import { retrievePuzzle, setEmptyPuzzle, generatePuzzle } from './components/Gam
 import { checkWord } from './components/GameLogic/CheckWord';
 import WordGrid from './components/WordGrid';
 import WordList from './components/WordList';
+import GameOver from './components/GameOver';
 import './index.css';
 
 // let testArr = ["phone","adventure","diet","rustle","pidgeon","samsung", "spring", "barn", "music", "hamster", "cheese", "bacon", "caravan"];
@@ -15,8 +16,10 @@ class App extends Component {
     this.state = {
       puzzle: setEmptyPuzzle(9),
       wordList: [''],
+      foundList: [''],
       pos1: ['',''],
-      pos2: ['','']
+      pos2: ['',''],
+      gameOver: false
     }
   }
 
@@ -41,8 +44,34 @@ class App extends Component {
   }
 
   checkPositions = () => {
-    let test = checkWord(this.state.puzzle, this.state.pos1, this.state.pos2);
-    console.log(test);
+    let word = checkWord(this.state.puzzle, this.state.pos1, this.state.pos2);
+    console.log(word);
+    if(this.state.wordList.includes(word) && !this.state.foundList.includes(word)){
+      this.setState({foundList: [...this.state.foundList, word]});
+      this.checkWinCondition()
+    } else {
+      // word not in list
+    }
+
+    
+
+  }
+  checkWinCondition(){
+    if(this.state.wordList.length === this.state.foundList.length){
+      alert("You won!");
+      this.setState({gameOver: true});
+    }
+  }
+
+  resetGame(){
+    // this.setState({
+    //   puzzle: setEmptyPuzzle(9),
+    //   wordList: [''],
+    //   foundList: [''],
+    //   pos1: ['',''],
+    //   pos2: ['',''],
+    //   gameOver: false
+    // })
   }
 
   render(){
@@ -50,10 +79,12 @@ class App extends Component {
     return (
       <div className="App">
         <h2>Word Search!</h2>
-        {/* <div id="puzzle"></div> */}
+        {this.state.gameOver &&
+          <GameOver resetBtn={this.resetGame} />
+        }
         <div id="puzzle-grid">
           <WordGrid puzzle={this.state.puzzle} mouseDown={this.mouseDown} mouseUp={this.mouseUp}/>
-          <WordList words={this.state.wordList}/>
+          <WordList words={this.state.wordList} foundWords={this.state.foundList}/>
         </div>
         <div>
           <button onClick={this.testBtn}>Clicky!</button>

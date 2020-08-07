@@ -1,10 +1,12 @@
 import React from 'react';
 
-const WordList = ({words}) => (
+const WordList = ({words, foundWords}) => (
       
   <div id="word-list">
     {words.map((word) => (
-      <div>{word}</div>
+      <div
+        className={foundWords.includes(word) ? 'found' : 'notFound'}
+      >{word}</div>
     ))
     }
   </div>

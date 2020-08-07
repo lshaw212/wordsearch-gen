@@ -4,6 +4,14 @@
   outline: solid #f00 1px !important;
 } */
 
+.found{
+  text-decoration: line-through;
+}
+
+.notFound{
+
+}
+
 #puzzle {
   /* width: 50%; */
   display: inline-block;
