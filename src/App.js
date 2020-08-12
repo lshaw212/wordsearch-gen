@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { retrievePuzzle, setEmptyPuzzle, generatePuzzle } from './components/GameLogic/GenerateGrid';
 import { checkWord } from './components/GameLogic/CheckWord';
-import WordGrid from './components/WordGrid';
-import WordList from './components/WordList';
-import GameOver from './components/GameOver';
+import SetupGame from './components/SetupGame';
+import Game from './components/Game';
 import './index.css';
 
 // let testArr = ["phone","adventure","diet","rustle","pidgeon","samsung", "spring", "barn", "music", "hamster", "cheese", "bacon", "caravan"];
@@ -19,8 +18,15 @@ class App extends Component {
       foundList: [''],
       pos1: ['',''],
       pos2: ['',''],
+      gameStart:false,
       gameOver: false
     }
+  }
+
+  componentDidMount(){
+    generatePuzzle(9,testArr);
+    this.setState({puzzle:retrievePuzzle()})
+    // this.setState({wordList:testArr});
   }
 
   testBtn = () => {
@@ -28,6 +34,11 @@ class App extends Component {
     this.setState({puzzle:retrievePuzzle()})
     this.setState({wordList:testArr});
   }
+
+  handleChange = (e) => {
+    this.setState({wordList: [...this.state.wordList, e.target.value]})
+  }
+
   mouseDown = (e, x, y) => {
     this.setState((state, props) => ({
       pos1:[x,y]
@@ -62,6 +73,9 @@ class App extends Component {
       this.setState({gameOver: true});
     }
   }
+  startGame = () => {
+    this.setState({gameStart: true});
+  }
 
   resetGame(){
     // this.setState({
@@ -79,16 +93,20 @@ class App extends Component {
     return (
       <div className="App">
         <h2>Word Search!</h2>
-        {this.state.gameOver &&
-          <GameOver resetBtn={this.resetGame} />
+        {!this.state.gameStart
+          ? <SetupGame
+              startGame={this.startGame}
+              onChange={this.handleChange.bind(this)}
+            />
+          : <Game 
+              puzzle={this.state.puzzle}
+              mouseDown={this.mouseDown}
+              mouseUp={this.mouseUp}
+              words={this.state.wordList}
+              foundWords={this.state.foundList}
+              testBtn={this.testBtn}
+            />
         }
-        <div id="puzzle-grid">
-          <WordGrid puzzle={this.state.puzzle} mouseDown={this.mouseDown} mouseUp={this.mouseUp}/>
-          <WordList words={this.state.wordList} foundWords={this.state.foundList}/>
-        </div>
-        <div>
-          <button onClick={this.testBtn}>Clicky!</button>
-        </div>
       </div>
     );
   }

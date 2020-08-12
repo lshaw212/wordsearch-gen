@@ -11,6 +11,13 @@
 .notFound{
 
 }
+#game-over-container{
+  height: 200px;
+  width: 600px;
+  background-color: red;
+  position: absolute;
+  
+}
 
 #puzzle {
   /* width: 50%; */
@@ -66,6 +73,8 @@ body {
 }
 .App {
   text-align: center;
+  display: flex;
+  flex-direction: column;
 }
 
 .App-logo {
