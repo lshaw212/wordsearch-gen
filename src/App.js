@@ -24,8 +24,8 @@ class App extends Component {
   }
 
   componentDidMount(){
-    generatePuzzle(9,testArr);
-    this.setState({puzzle:retrievePuzzle()})
+    // generatePuzzle(9,testArr);
+    // this.setState({puzzle:retrievePuzzle()})
     // this.setState({wordList:testArr});
   }
 
@@ -36,7 +36,23 @@ class App extends Component {
   }
 
   handleChange = (e) => {
-    this.setState({wordList: [...this.state.wordList, e.target.value]})
+    // this.setState({wordList: [...this.state.wordList, e.target.value]})
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    let arr = [];
+    for(let i = 0; i < e.target.wordList.length; i++){
+      if(e.target.wordList[i].value.length > 1){
+        arr.push(e.target.wordList[i].value);
+      }
+    }
+    console.log(arr);
+    this.setState((state, props) => ({
+      wordList: arr
+   }), ()=>{
+    this.startGame();
+   });
   }
 
   mouseDown = (e, x, y) => {
@@ -74,6 +90,8 @@ class App extends Component {
     }
   }
   startGame = () => {
+    generatePuzzle(9,this.state.wordList);
+    this.setState({puzzle:retrievePuzzle()})
     this.setState({gameStart: true});
   }
 
@@ -97,6 +115,7 @@ class App extends Component {
           ? <SetupGame
               startGame={this.startGame}
               onChange={this.handleChange.bind(this)}
+              onSubmit={this.handleSubmit.bind(this)}
             />
           : <Game 
               puzzle={this.state.puzzle}

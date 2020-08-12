@@ -1,20 +1,21 @@
 import React from 'react';
 
-const SetupGame = ({startGame, onChange}) => (
+const SetupGame = ({startGame, onChange, onSubmit}) => (
       
   <div>
     <h1>Enter words and create your grid!</h1>
     <div>
-      <form action="">
+      <form onSubmit={onSubmit}>
         <input type='text' name='wordList' onChange={onChange}/>
         <input type='text' name='wordList' onChange={onChange}/>
         <input type='text' name='wordList' onChange={onChange}/>
         <input type='text' name='wordList' onChange={onChange}/>
         <input type='text' name='wordList' onChange={onChange}/>
         <input type='text' name='wordList' onChange={onChange}/>
+        {/* <button>Create Game</button> */}
+        <input type="submit" value="create"/>
       </form>
     </div>
-    <button onClick={startGame}>Create Game</button>
   </div>
 
 )
