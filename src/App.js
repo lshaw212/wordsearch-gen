@@ -13,7 +13,8 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      puzzle: setEmptyPuzzle(9),
+      puzzle: [],
+      gridSize: 6,
       wordList: [''],
       foundList: [''],
       pos1: ['',''],
@@ -30,7 +31,7 @@ class App extends Component {
   }
 
   testBtn = () => {
-    generatePuzzle(9,testArr);
+    generatePuzzle(this.state.gridSize,testArr);
     this.setState({puzzle:retrievePuzzle()})
     this.setState({wordList:testArr});
   }
@@ -38,15 +39,20 @@ class App extends Component {
   handleChange = (e) => {
     // this.setState({wordList: [...this.state.wordList, e.target.value]})
   }
+  handleChangeGrid = (e) => {
+    console.log(e.target.value);
+    this.setState({gridSize: e.target.value});
+  }
 
   handleSubmit = (e) => {
     e.preventDefault();
     let arr = [];
-    for(let i = 0; i < e.target.wordList.length; i++){
-      if(e.target.wordList[i].value.length > 1){
-        arr.push(e.target.wordList[i].value);
-      }
-    }
+    // for(let i = 0; i < e.target.wordList.length; i++){
+    //   if(e.target.wordList[i].value.length > 1){
+    //     arr.push(e.target.wordList[i].value);
+    //   }
+    // }
+    console.log(e.target);
     console.log(arr);
     this.setState((state, props) => ({
       wordList: arr
@@ -90,7 +96,7 @@ class App extends Component {
     }
   }
   startGame = () => {
-    generatePuzzle(9,this.state.wordList);
+    generatePuzzle(this.state.gridSize,this.state.wordList);
     this.setState({puzzle:retrievePuzzle()})
     this.setState({gameStart: true});
   }
@@ -114,8 +120,9 @@ class App extends Component {
         {!this.state.gameStart
           ? <SetupGame
               startGame={this.startGame}
-              onChange={this.handleChange.bind(this)}
               onSubmit={this.handleSubmit.bind(this)}
+              onChangeGridSize={this.handleChangeGrid.bind(this)}
+              gridSize={this.state.gridSize}
             />
           : <Game 
               puzzle={this.state.puzzle}
