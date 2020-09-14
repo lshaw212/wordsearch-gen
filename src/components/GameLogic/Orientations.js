@@ -10,6 +10,7 @@ const orientations = {
   forward: function(word, length, puzzle, pos, size){
     if(pos[0]+length <= size){
       return word.every(function(val,i){
+        console.log(puzzle);
         return puzzle[pos[1]][pos[0]+i] === '' || puzzle[pos[1]][pos[0]+i] === val;
       });
     }

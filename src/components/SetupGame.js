@@ -1,33 +1,34 @@
 import React from 'react';
 
-let gridSize
-const SetupGame = ({startGame, gridSize, onSubmit, onChangeGridSize}) => (
+
+const SetupGame = ({gridSize, onSubmit, onChangeGridSize}) => (
       
   <div>
     <h1>Enter words and create your grid!</h1>
     <div>
       <form onSubmit={onSubmit}>
+
         {gridSize == 6 &&
-          <div>
+          <label>
             <input type='text' name='wordList'/>
             <input type='text' name='wordList'/>
-          </div>
+          </label>
         }
         {gridSize == 9 &&
-          <div>
+          <label>
             <input type='text' name='wordList'/>
             <input type='text' name='wordList'/>
             <input type='text' name='wordList'/>
-          </div>
+          </label>
         }
         {gridSize == 12 &&
-          <div>
+          <label>
             <input type='text' name='wordList'/>
             <input type='text' name='wordList'/>
             <input type='text' name='wordList'/>
             <input type='text' name='wordList'/>
             <input type='text' name='wordList'/>
-          </div>
+          </label>
         }
         <input type="submit" value="create"/>
       </form>
