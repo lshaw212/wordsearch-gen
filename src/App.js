@@ -36,9 +36,6 @@ class App extends Component {
     this.setState({wordList:testArr});
   }
 
-  handleChange = (e) => {
-    // this.setState({wordList: [...this.state.wordList, e.target.value]})
-  }
   handleChangeGrid = (e) => {
     console.log(e.target.value);
     this.setState({gridSize: e.target.value});
@@ -47,18 +44,14 @@ class App extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     let arr = [];
-    // for(let i = 0; i < e.target.wordList.length; i++){
-    //   if(e.target.wordList[i].value.length > 1){
-    //     arr.push(e.target.wordList[i].value);
-    //   }
-    // }
-    console.log(e.target);
-    console.log(arr);
+    for (let i = 0; i < e.target.children[0].children.length; i++)
+      arr.push(e.target.children[0].children[i].value);
+
     this.setState((state, props) => ({
       wordList: arr
-   }), ()=>{
-    this.startGame();
-   });
+    }), ()=>{
+      this.startGame();
+    });
   }
 
   mouseDown = (e, x, y) => {
