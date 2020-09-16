@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
-import { retrievePuzzle, setEmptyPuzzle, generatePuzzle } from './components/GameLogic/GenerateGrid';
+import { retrievePuzzle, generatePuzzle } from './components/GameLogic/GenerateGrid';
 import { checkWord } from './components/GameLogic/CheckWord';
 import SetupGame from './components/SetupGame';
 import Game from './components/Game';
 import './index.css';
-
-// let testArr = ["phone","adventure","diet","rustle","pidgeon","samsung", "spring", "barn", "music", "hamster", "cheese", "bacon", "caravan"];
-let testArr = ["phone","barn","diet"]
 
 class App extends Component {
 
@@ -22,18 +19,13 @@ class App extends Component {
       gameStart:false,
       gameOver: false
     }
+    this.resetGame = this.resetGame.bind(this);
   }
 
   componentDidMount(){
     // generatePuzzle(9,testArr);
     // this.setState({puzzle:retrievePuzzle()})
     // this.setState({wordList:testArr});
-  }
-
-  testBtn = () => {
-    generatePuzzle(this.state.gridSize,testArr);
-    this.setState({puzzle:retrievePuzzle()})
-    this.setState({wordList:testArr});
   }
 
   handleChangeGrid = (e) => {
@@ -95,14 +87,16 @@ class App extends Component {
   }
 
   resetGame(){
-    // this.setState({
-    //   puzzle: setEmptyPuzzle(9),
-    //   wordList: [''],
-    //   foundList: [''],
-    //   pos1: ['',''],
-    //   pos2: ['',''],
-    //   gameOver: false
-    // })
+    this.setState({
+      puzzle: [],
+      gridSize: 6,
+      wordList: [''],
+      foundList: [''],
+      pos1: ['',''],
+      pos2: ['',''],
+      gameStart: false,
+      gameOver: false
+    });
   }
 
   render(){
@@ -123,7 +117,7 @@ class App extends Component {
               mouseUp={this.mouseUp}
               words={this.state.wordList}
               foundWords={this.state.foundList}
-              testBtn={this.testBtn}
+              resetBtn={this.resetGame}
             />
         }
       </div>

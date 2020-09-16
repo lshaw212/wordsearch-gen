@@ -1,5 +1,6 @@
 import React from 'react';
 
+// Stop same word being repeated
 
 const SetupGame = ({gridSize, onSubmit, onChangeGridSize}) => (
       
@@ -10,24 +11,36 @@ const SetupGame = ({gridSize, onSubmit, onChangeGridSize}) => (
 
         {gridSize == 6 &&
           <label>
-            <input type='text' name='wordList'/>
-            <input type='text' name='wordList'/>
+            <input type='text' name='wordList' maxLength= {5}/>
+            <input type='text' name='wordList' maxLength= {5}/>
+            <input type='text' name='wordList' maxLength= {5}/>
+            <input type='text' name='wordList' maxLength= {5}/>
+            <input type='text' name='wordList' maxLength= {5}/>
           </label>
         }
         {gridSize == 9 &&
           <label>
-            <input type='text' name='wordList'/>
-            <input type='text' name='wordList'/>
-            <input type='text' name='wordList'/>
+            <input type='text' name='wordList' maxLength= {8}/>
+            <input type='text' name='wordList' maxLength= {8}/>
+            <input type='text' name='wordList' maxLength= {8}/>
+            <input type='text' name='wordList' maxLength= {8}/>
+            <input type='text' name='wordList' maxLength= {8}/>
+            <input type='text' name='wordList' maxLength= {8}/>
+            <input type='text' name='wordList' maxLength= {8}/>
           </label>
         }
         {gridSize == 12 &&
           <label>
-            <input type='text' name='wordList'/>
-            <input type='text' name='wordList'/>
-            <input type='text' name='wordList'/>
-            <input type='text' name='wordList'/>
-            <input type='text' name='wordList'/>
+            <input type='text' name='wordList' maxLength= {11}/>
+            <input type='text' name='wordList' maxLength= {11}/>
+            <input type='text' name='wordList' maxLength= {11}/>
+            <input type='text' name='wordList' maxLength= {11}/>
+            <input type='text' name='wordList' maxLength= {11}/>
+            <input type='text' name='wordList' maxLength= {11}/>
+            <input type='text' name='wordList' maxLength= {11}/>
+            <input type='text' name='wordList' maxLength= {11}/>
+            <input type='text' name='wordList' maxLength= {11}/>
+            <input type='text' name='wordList' maxLength= {11}/>
           </label>
         }
         <input type="submit" value="create"/>

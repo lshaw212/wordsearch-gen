@@ -7,20 +7,6 @@ const rndLetters = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o',
 
 let puzzle, orientationList = [];
 
-// let testPuzzle2 =[
-//   ["","","","","","","","",""],
-//   ["","","","","","","","",""],
-//   ["","","","","","","","",""],
-//   ["","","","","","","","",""],
-//   ["","","","","","","","",""],
-//   ["","","","","","","","",""],
-//   ["","","","","","","","",""],
-//   ["","","","","","","","",""],
-//   ["","","","","","","","",""]
-// ];
-
-
-
 export const setEmptyPuzzle = (size) => {
   let puzzle = [];
   for (let i = 0; i < size; i++) {
@@ -54,8 +40,13 @@ export const addWord = (size, word) => {
 
   let wordPlaced = false;
   while(!wordPlaced){
-    let pos = [Math.floor(Math.random() * 9), Math.floor(Math.random() * 9)];
+    
+    //Issues only uses a static 9 for size
+    // Randomise the position for each word
+    let pos = [Math.floor(Math.random() * (size-1)), Math.floor(Math.random() * (size-1))];
     // let pos = [0,0];
+
+    console.log(pos);
   
     if(checkValidCell(word.length,(size+1),pos[0],pos[1])){
       

@@ -2,7 +2,7 @@ import React from 'react';
 import WordGrid from './WordGrid/WordGrid';
 import WordList from './WordList'
 
-const Game = ({puzzle, mouseDown, mouseUp, words, foundWords, testBtn}) => (
+const Game = ({puzzle, mouseDown, mouseUp, words, foundWords, resetBtn}) => (
       
   <div>
     <div id="puzzle-grid">
@@ -10,7 +10,7 @@ const Game = ({puzzle, mouseDown, mouseUp, words, foundWords, testBtn}) => (
           <WordList words={words} foundWords={foundWords}/>
         </div>
         <div>
-          <button onClick={testBtn}>Clicky!</button>
+          <button onClick={resetBtn}>Reset Game</button>
         </div>
   </div>
 
