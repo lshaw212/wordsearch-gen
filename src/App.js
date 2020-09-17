@@ -29,7 +29,6 @@ class App extends Component {
   }
 
   handleChangeGrid = (e) => {
-    console.log(e.target.value);
     this.setState({gridSize: e.target.value});
   }
 

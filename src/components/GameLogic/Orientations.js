@@ -10,7 +10,6 @@ const orientations = {
   forward: function(word, length, puzzle, pos, size){
     if(pos[0]+length <= size){
       return word.every(function(val,i){
-        console.log(puzzle);
         return puzzle[pos[1]][pos[0]+i] === '' || puzzle[pos[1]][pos[0]+i] === val;
       });
     }
@@ -87,7 +86,7 @@ export const fwdCheck = (word, puzzle, pos) => {
     word.forEach(function(val, i){
       puzzle[pos[1]].splice((pos[0]+i),1,val);
     });
-    console.log(puzzle);
+    // console.log(puzzle);
     return puzzle;
   } catch {
     console.log("ERROR: Can't place word in forward position");
@@ -99,7 +98,7 @@ export const backCheck = (word, puzzle, pos) => {
     word.forEach(function(val, i){
       puzzle[pos[1]].splice((pos[0]-i),1,val);
     });
-    console.log(puzzle);
+    // console.log(puzzle);
     return puzzle;
   } catch {
     console.log("ERROR: Can't place word in back position");
@@ -111,7 +110,7 @@ export const upCheck = (word, puzzle, pos) => {
     word.forEach(function(val, i){
       puzzle[pos[1]-i].splice((pos[0]),1,val);
     });
-    console.log(puzzle);
+    // console.log(puzzle);
     return puzzle;
   } catch {
     console.log("ERROR: Can't place word in up position");
@@ -122,7 +121,7 @@ export const downCheck = (word, puzzle, pos) => {
     word.forEach(function(val, i){
       puzzle[pos[1]+i].splice((pos[0]),1,val);
     });
-    console.log(puzzle);
+    // console.log(puzzle);
     return puzzle;
   } catch {
     console.log("ERROR: Can't place word in down position");
@@ -133,7 +132,7 @@ export const neCheck = (word, puzzle, pos) => {
     word.forEach(function(val, i){
       puzzle[pos[1]-i].splice((pos[0]+i),1,val);
     });
-    console.log(puzzle);
+    // console.log(puzzle);
     return puzzle;
   } catch {
     console.log("ERROR: Can't place word in north east position");
@@ -144,7 +143,7 @@ export const seCheck = (word, puzzle, pos) => {
     word.forEach(function(val, i){
       puzzle[pos[1]+i].splice((pos[0]+i),1,val);
     });
-    console.log(puzzle);
+    // console.log(puzzle);
     return puzzle;
   } catch {
     console.log("ERROR: Can't place word in south east position");
@@ -156,7 +155,7 @@ export const swCheck = (word, puzzle, pos) => {
       // console.log(puzzle[pos[1]]);
       puzzle[pos[1]+i].splice((pos[0]-i),1,val);
     });
-    console.log(puzzle);
+    // console.log(puzzle);
     return puzzle;
   } catch {
     console.log("ERROR: Can't place word in south west position");
@@ -167,7 +166,7 @@ export const nwCheck = (word, puzzle, pos) => {
     word.forEach(function(val, i){
       puzzle[pos[1]-i].splice((pos[0]-i),1,val);
     });
-    console.log(puzzle);
+    // console.log(puzzle);
     return puzzle;
   } catch {
     console.log("ERROR: Can't place word in north west position");
