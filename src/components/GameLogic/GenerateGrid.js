@@ -84,12 +84,22 @@ const direction = (word, pos, orientationList) => {
   let rnd, wordArr = [];
 
   if(usedOrientations.length > 0){
+
+    mainLoop:
     for(let i = 0; i < 10; i++){
       for (let j = 0; j < usedOrientations.length; j++){
         if(usedOrientations[j].count === i && orientationList.includes(usedOrientations[j].Orientation)){
           rnd = usedOrientations[j].Orientation;
           // usedOrientations = usedOrientations.map(el => el.Orientation == rnd ? {...el, count: []})
-          console.log(rnd);
+          let newOri = usedOrientations.map(el => {
+                                        if(el.Orientation == rnd)
+                                            return Object.assign({}, el, {count: el.count+1});
+                                        return el
+          });
+          // console.log(rnd);
+          // console.log(newOri);
+          console.log("we breaking the mainLoop");
+          break mainLoop;
         }
       }
     }

@@ -2,7 +2,7 @@ import React from 'react';
 
 // Stop same word being repeated
 
-const SetupGame = ({gridSize, onSubmit, onChangeGridSize}) => (
+const SetupGame = ({gridSize, onSubmit, onChangeGridSize, onKey}) => (
       
   <div>
     <h1>Enter words and create your grid!</h1>

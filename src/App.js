@@ -36,11 +36,13 @@ class App extends Component {
     e.preventDefault();
     let arr = [];
     for (let i = 0; i < e.target.children[0].children.length; i++)
-      arr.push(e.target.children[0].children[i].value);
+      if(e.target.children[0].children[i].value.match(/^[a-zA-Z]+$/)) // Seems to be working.
+        arr.push(e.target.children[0].children[i].value);
 
     this.setState((state, props) => ({
       wordList: arr
     }), ()=>{
+      console.log(this.state.wordList);
       this.startGame();
     });
   }
@@ -58,6 +60,11 @@ class App extends Component {
    }), ()=>{
     this.checkPositions();
    });
+  }
+
+  onKeyPress = (event) => {
+    console.log("ayy")
+    return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122);
   }
 
   checkPositions = () => {
@@ -107,6 +114,7 @@ class App extends Component {
           ? <SetupGame
               startGame={this.startGame}
               onSubmit={this.handleSubmit.bind(this)}
+              onKey={this.onKeyPress.bind(this)}
               onChangeGridSize={this.handleChangeGrid.bind(this)}
               gridSize={this.state.gridSize}
             />
