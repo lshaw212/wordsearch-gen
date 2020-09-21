@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { retrievePuzzle, generatePuzzle } from './components/GameLogic/GenerateGrid';
 import { checkWord } from './components/GameLogic/CheckWord';
+import Drawing from './components/Drawing';
 import SetupGame from './components/SetupGame';
 import Game from './components/Game';
 import './index.css';
@@ -32,13 +33,16 @@ class App extends Component {
     this.setState({gridSize: e.target.value});
   }
 
+  // Gather all inputs, filter out the empty strings and push all words into the array
+  // The array is set to the wordList and we start the game
   handleSubmit = (e) => {
     e.preventDefault();
-    let arr = [];
-    for (let i = 0; i < e.target.children[0].children.length; i++)
-      if(e.target.children[0].children[i].value.match(/^[a-zA-Z]+$/)) // Seems to be working.
-        arr.push(e.target.children[0].children[i].value);
-
+    let arr = [], input = e.target.children[0].children;
+    for (let i = 0; i < input.length; i++){
+      if(input[i].value !== ''){
+        arr.push(input[i].value);
+      }
+    }
     this.setState((state, props) => ({
       wordList: arr
     }), ()=>{
@@ -62,11 +66,6 @@ class App extends Component {
    });
   }
 
-  onKeyPress = (event) => {
-    console.log("ayy")
-    return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122);
-  }
-
   checkPositions = () => {
     let word = checkWord(this.state.puzzle, this.state.pos1, this.state.pos2);
     console.log(word);
@@ -76,9 +75,6 @@ class App extends Component {
     } else {
       // word not in list
     }
-
-    
-
   }
   checkWinCondition(){
     if(this.state.wordList.length === this.state.foundList.length){
@@ -100,7 +96,7 @@ class App extends Component {
       foundList: [''],
       pos1: ['',''],
       pos2: ['',''],
-      gameStart: false,
+      gameStart: false, //rename to isGameStart
       gameOver: false
     });
   }
@@ -110,11 +106,12 @@ class App extends Component {
     return (
       <div className="App">
         <h2>Word Search!</h2>
+        <Drawing />
         {!this.state.gameStart
           ? <SetupGame
               startGame={this.startGame}
               onSubmit={this.handleSubmit.bind(this)}
-              onKey={this.onKeyPress.bind(this)}
+              onKey={(e) => this.onKeyPress(e)}
               onChangeGridSize={this.handleChangeGrid.bind(this)}
               gridSize={this.state.gridSize}
             />
