@@ -3,7 +3,7 @@ import WordCell from './WordCell';
 
 //figure out this issue
 
-const WordRow = ({key,puzzle, test, y, x, mouseDown, mouseUp}) => (
+const WordRow = ({key,puzzle, test, y, x, mouseDown, mouseUp, foundCoords}) => (
   <div>
     {puzzle.map((p, i) => (
       <WordCell
@@ -11,6 +11,7 @@ const WordRow = ({key,puzzle, test, y, x, mouseDown, mouseUp}) => (
         cell={p}
         y={y}
         x={x+i}
+        foundCoords={foundCoords}
         mouseDown={mouseDown}
         mouseUp={mouseUp}
       />

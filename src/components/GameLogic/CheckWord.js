@@ -13,84 +13,36 @@ export const checkWord = (puzzle, pos1, pos2) => {
     // Following functions are very messy, looking at ways to improve this check, wanting to get this working to an extent first.
 
     const getString = (x,y) => {
-      let str = '';
+      let value = '';
+      let posArr = [];
+      // let wordData = {};
       let length = Math.max(Math.abs(xDiff), Math.abs(yDiff));
+      // console.log(length);
       for (let i = 0; i < (length + 1); i++) {
-        str = str + puzzle[(pos1[1]+(y*i))][(pos1[0]+(x*i))]
+        console.log("x:" + (pos1[1]+(y*i)) + " & y:" + (pos1[0]+(x*i)));
+        posArr.push([(pos1[1]+(y*i)),(pos1[0]+(x*i))]);
+        value = value + puzzle[(pos1[1]+(y*i))][(pos1[0]+(x*i))]
       }
-      return str;
+      // console.log(posArr);
+      let wordData = {value, posArr}
+      return wordData;
     }
-    //
-    //
-    //negative x
-    //
-    //
-    if(xDiff < 0){
-      //negative y
-      if(yDiff<0){
-        console.log("Negative X, Negative Y");
-        return getString(-1,-1);
-      }
-      //positive y
-      if(yDiff>0){
-        console.log("Negative X, Positive Y");
-        return getString(-1,1);
-      }
-    }
-    //
-    //
-    //positive x
-    //
-    //
-    if(xDiff > 0){
-      //negative y
-      if(yDiff<0){
-        console.log("Positive X, Negative Y");
-        return getString(1,-1);
-      }
-      //positive y
-      if(yDiff>0){
-        console.log("Positive X, Positive Y");
-        return getString(1,1);
-      }
-    }
-
-    //
-    //
-    // X axis doesn't move
-    //
-    //
-    if(xDiff === 0){
-      //negative y
-      if(yDiff<0){
-        console.log("X axis doesn't move, Negative Y");
-        return getString(0,-1);
-      }
-      //positive y
-      if(yDiff>0){
-        console.log("X axis doesn't move, Positive Y");
-        return getString(0,1);
-      }
-      return;
-    }
-    //
-    //
-    // Y axis doesn't move
-    //
-    //
-    if(yDiff === 0){
-      //negative x
-      if(xDiff<0){
-        console.log("Negative X, Y axis doesn't move");
-        return getString(-1,0);
-      }
-      //positive x
-      if(xDiff>0){
-        console.log("Positive X, Y axis doesn't move");
+      if(yDiff<0 && xDiff < 0) // UP + RIGHT: Negative X, Negative Y
+        return getString(-1,-1) 
+      if(yDiff>0 && xDiff < 0) // DOWN + RIGHT: Negative X, Positive Y
+        return getString(-1,1);      
+      if(yDiff<0 && xDiff > 0) // UP + LEFT: Positive X, Negative Y
+        return getString(1,-1);     
+      if(yDiff>0 && xDiff > 0) // DOWN + LEFT: Positive X, Positive Y
+        return getString(1,1);  
+      if(yDiff<0 && xDiff === 0) // UP: X axis doesn't move, Negative Y
+        return getString(0,-1);  
+      if(yDiff>0 && xDiff === 0) // DOWN: X axis doesn't move, Positive Y
+        return getString(0,1); 
+      if(xDiff<0 && yDiff === 0) // RIGHT: Negative X, Y axis doesn't move
+        return getString(-1,0);      
+      if(xDiff>0 && yDiff === 0) // LEFT: Positive X, Y axis doesn't move
         return getString(1,0);
-      }
-      return;
-    }
   } else {
     console.log("NOT A VALID ORIENTATION");
   }

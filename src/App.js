@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { retrievePuzzle, generatePuzzle } from './components/GameLogic/GenerateGrid';
 import { checkWord } from './components/GameLogic/CheckWord';
-import Drawing from './components/Drawing';
 import SetupGame from './components/SetupGame';
 import Game from './components/Game';
 import './index.css';
@@ -18,7 +17,8 @@ class App extends Component {
       pos1: ['',''],
       pos2: ['',''],
       gameStart:false,
-      gameOver: false
+      gameOver: false,
+      coordsUsed: []
     }
     this.resetGame = this.resetGame.bind(this);
   }
@@ -33,13 +33,13 @@ class App extends Component {
     this.setState({gridSize: e.target.value});
   }
 
-  // Gather all inputs, filter out the empty strings and push all words into the array
+  // Gather all inputs, filter out the empty strings and push all words into the array(while filtering out empty strings or duplicates)
   // The array is set to the wordList and we start the game
   handleSubmit = (e) => {
     e.preventDefault();
     let arr = [], input = e.target.children[0].children;
     for (let i = 0; i < input.length; i++){
-      if(input[i].value !== ''){
+      if(input[i].value !== '' && !arr.includes(input[i].value)){
         arr.push(input[i].value);
       }
     }
@@ -68,14 +68,31 @@ class App extends Component {
 
   checkPositions = () => {
     let word = checkWord(this.state.puzzle, this.state.pos1, this.state.pos2);
-    console.log(word);
-    if(this.state.wordList.includes(word) && !this.state.foundList.includes(word)){
-      this.setState({foundList: [...this.state.foundList, word]});
+    // console.log(word);
+    // @TODO: FIX WORD.VALUE
+    if(this.state.wordList.includes(word.value) && !this.state.foundList.includes(word.value)){
+      // console.log(this.state.pos1);
+      // console.log(this.state.pos2);
+      this.setState({foundList: [...this.state.foundList, word.value]});
+      this.foundWordTileColour(word.posArr);
       this.checkWinCondition()
     } else {
       // word not in list
     }
   }
+
+  foundWordTileColour(arr){
+    let newArr = []
+    for(let val of arr){
+      if(!this.state.coordsUsed.includes(val)){
+        newArr.push(val)
+      }
+    }
+    this.setState({
+      coordsUsed: [...this.state.coordsUsed, ...newArr]
+    });
+  }
+
   checkWinCondition(){
     if(this.state.wordList.length === this.state.foundList.length){
       alert("You won!");
@@ -97,7 +114,8 @@ class App extends Component {
       pos1: ['',''],
       pos2: ['',''],
       gameStart: false, //rename to isGameStart
-      gameOver: false
+      gameOver: false,
+      coordsUsed: []
     });
   }
 
@@ -106,7 +124,6 @@ class App extends Component {
     return (
       <div className="App">
         <h2>Word Search!</h2>
-        <Drawing />
         {!this.state.gameStart
           ? <SetupGame
               startGame={this.startGame}
@@ -121,6 +138,7 @@ class App extends Component {
               mouseUp={this.mouseUp}
               words={this.state.wordList}
               foundWords={this.state.foundList}
+              foundCoords={this.state.coordsUsed}
               resetBtn={this.resetGame}
             />
         }
