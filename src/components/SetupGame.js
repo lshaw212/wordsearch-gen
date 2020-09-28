@@ -17,7 +17,7 @@ class SetupGame extends Component {
   textBox = () => {
     let boxes = [];
     for(let i=0; i<this.props.gridSize; i++){
-      boxes.push(<WordInput maxSize={this.props.gridSize - 1}/>);
+      boxes.push(<WordInput key={i} maxSize={this.props.gridSize - 1}/>);
     }
     return boxes;
   }
@@ -60,38 +60,3 @@ class SetupGame extends Component {
 // )
 
 export default SetupGame;
-
-// {gridSize == 6 &&
-//   <label>
-//     <input type='text' name='wordList' maxLength= {5} onKeyDown={(e) => onKey(e)}/>
-//     <input type='text' name='wordList' maxLength= {5} onKeyPress='return !isNaN(event.key)'/>
-//     <input type='text' name='wordList' maxLength= {5}/>
-//     <input type='text' name='wordList' maxLength= {5}/>
-//     <input type='text' name='wordList' maxLength= {5}/>
-//   </label>
-// }
-// {gridSize == 9 &&
-//   <label>
-//     <input type='text' name='wordList' maxLength= {8}/>
-//     <input type='text' name='wordList' maxLength= {8}/>
-//     <input type='text' name='wordList' maxLength= {8}/>
-//     <input type='text' name='wordList' maxLength= {8}/>
-//     <input type='text' name='wordList' maxLength= {8}/>
-//     <input type='text' name='wordList' maxLength= {8}/>
-//     <input type='text' name='wordList' maxLength= {8}/>
-//   </label>
-// }
-// {gridSize == 12 &&
-//   <label>
-//     <input type='text' name='wordList' maxLength= {11}/>
-//     <input type='text' name='wordList' maxLength= {11}/>
-//     <input type='text' name='wordList' maxLength= {11}/>
-//     <input type='text' name='wordList' maxLength= {11}/>
-//     <input type='text' name='wordList' maxLength= {11}/>
-//     <input type='text' name='wordList' maxLength= {11}/>
-//     <input type='text' name='wordList' maxLength= {11}/>
-//     <input type='text' name='wordList' maxLength= {11}/>
-//     <input type='text' name='wordList' maxLength= {11}/>
-//     <input type='text' name='wordList' maxLength= {11}/>
-//   </label>
-// }

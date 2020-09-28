@@ -46,7 +46,7 @@ class App extends Component {
     this.setState((state, props) => ({
       wordList: arr
     }), ()=>{
-      console.log(this.state.wordList);
+      // console.log(this.state.wordList);
       this.startGame();
     });
   }
@@ -68,11 +68,7 @@ class App extends Component {
 
   checkPositions = () => {
     let word = checkWord(this.state.puzzle, this.state.pos1, this.state.pos2);
-    // console.log(word);
-    // @TODO: FIX WORD.VALUE
-    if(this.state.wordList.includes(word.value) && !this.state.foundList.includes(word.value)){
-      // console.log(this.state.pos1);
-      // console.log(this.state.pos2);
+    if(word!==undefined && this.state.wordList.includes(word.value) && !this.state.foundList.includes(word.value)){
       this.setState({foundList: [...this.state.foundList, word.value]});
       this.foundWordTileColour(word.posArr);
       this.checkWinCondition()

@@ -9,7 +9,7 @@ const WordGrid = ({puzzle,mouseDown,mouseUp,foundCoords}) => (
   <div id="puzzle">
     {puzzle.map((p, i) => (
       <WordRow
-        // key="jdasd"
+        key={i}
         rowLength={p.length}
         puzzle={p}
         y={y+i}

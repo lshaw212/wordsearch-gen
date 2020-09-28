@@ -15,15 +15,11 @@ export const checkWord = (puzzle, pos1, pos2) => {
     const getString = (x,y) => {
       let value = '';
       let posArr = [];
-      // let wordData = {};
       let length = Math.max(Math.abs(xDiff), Math.abs(yDiff));
-      // console.log(length);
       for (let i = 0; i < (length + 1); i++) {
-        console.log("x:" + (pos1[1]+(y*i)) + " & y:" + (pos1[0]+(x*i)));
         posArr.push([(pos1[1]+(y*i)),(pos1[0]+(x*i))]);
         value = value + puzzle[(pos1[1]+(y*i))][(pos1[0]+(x*i))]
       }
-      // console.log(posArr);
       let wordData = {value, posArr}
       return wordData;
     }
