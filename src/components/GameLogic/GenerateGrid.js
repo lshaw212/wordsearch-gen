@@ -17,6 +17,7 @@ let puzzle, orientationList = [];
 //   {"count": 0, "Orientation": "southWest"},
 //   {"count": 0, "Orientation": "northWest"},
 // ]
+// console.log(JSON.parse(JSON.stringify(puzzle)));
 
 let usedOrientations = [];
 
@@ -27,6 +28,7 @@ export const setEmptyPuzzle = (size) => {
     for (let j = 0; j < size; j++) {
       puzzle[i].push('');
     }
+    // console.log(JSON.parse(JSON.stringify(puzzle)));
   }
   return puzzle;
 }
@@ -36,44 +38,31 @@ export const retrievePuzzle = () => {
 }
 
 export const initalisePuzzle = (size, words) => {
-  
-
-
-
-
-
-
-
-
-
-
-
-  
+  let puzzle = generatePuzzle(size, words);
+  fillPuzzle(puzzle);
 }
 
 // This function generates the puzzle in an array.
 // We take all the words and put them into the addWord function.
 // After all our words have been added, we fill up the array with random words.
 export const generatePuzzle = (size, words) => {
+  let result;
   puzzle=setEmptyPuzzle(size);
-  words.forEach(element => {
-    addWord(size, element);
-  });
-  // console.log(puzzle);
-  fillPuzzle(puzzle);
+    for (let i = 0; i < words.length; i++) {
+      result = addWord(size, words[i])
+    }
+  return puzzle;
 }
 
 // ISSUES:
 // if position is valid, but you can't find directions, the word is skipped.
 export const addWord = (size, word) => {
 
-  let wordPlaced = false
-  // , attemptCounter = 0;
-  // while(!wordPlaced || attemptCounter<100){
+  let wordPlaced = false;
     while(!wordPlaced){
-    // attemptCounter++
     //Issues only uses a static 9 for size
     // Randomise the position for each word
+    
     let pos = [Math.floor(Math.random() * (size-1)), Math.floor(Math.random() * (size-1))];
   
     if(checkValidCell(word.length,(size+1),pos[0],pos[1])){
@@ -83,19 +72,18 @@ export const addWord = (size, word) => {
           direction(word, pos, orientationList);
           wordPlaced = true;
         } else {
-          // console.log("Word can't be placed");
+          console.log("Word can't be placed");
         }
         
     } else {
-      // console.log("Area Checked: CANNOT PLACE WORD");
+      console.log("Area Checked: CANNOT PLACE WORD");
     }
   }
-  return;
 }
 
 // We randomize a orientation from our list and place the letters in that direction
 const direction = (word, pos, orientationList) => {
-  let rnd, wordArr = [];
+  let wordArr = [];
   let value;
 
   if(usedOrientations.length > 0){
@@ -162,8 +150,9 @@ const checkValidCell = (length,size,x,y) => {
 const fillPuzzle = (puzzle) => {
   for (let i = 0; i < puzzle.length; i++) {
     for (let j = 0; j < puzzle.length; j++) {
-      if(puzzle[i][j] === '')
+      if(puzzle[i][j] === ''){
         puzzle[i].splice([j],1,`${rndLetters[Math.floor(Math.random() * rndLetters.length)]}`);
+      }
     }
   }
   return puzzle;

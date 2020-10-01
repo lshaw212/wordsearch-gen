@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { retrievePuzzle, generatePuzzle } from './components/GameLogic/GenerateGrid';
+import { retrievePuzzle, initalisePuzzle } from './components/GameLogic/GenerateGrid';
 import { checkWord } from './components/GameLogic/CheckWord';
 import SetupGame from './components/SetupGame';
 import Game from './components/Game';
@@ -96,7 +96,8 @@ class App extends Component {
     }
   }
   startGame = () => {
-    generatePuzzle(this.state.gridSize,this.state.wordList);
+    initalisePuzzle(this.state.gridSize,this.state.wordList);
+    // generatePuzzle(this.state.gridSize,this.state.wordList);
     this.setState({puzzle:retrievePuzzle()})
     this.setState({gameStart: true});
   }
