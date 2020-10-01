@@ -120,7 +120,7 @@ class App extends Component {
     
     return (
       <div className="App">
-        <h2>Word Search!</h2>
+        <div id="word-search-header">Word Search</div>
         {!this.state.gameStart
           ? <SetupGame
               startGame={this.startGame}

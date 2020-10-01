@@ -25,30 +25,26 @@ class SetupGame extends Component {
   render(){
     
     return (
-      <div>
-        <h1>Enter words and create your grid!</h1>
-        <div>
+      <div id="setup-container">
+        <div id="setup-header">Pick the grid size and input the words you want in your game</div>
+        <div id="setup-desc">Maximum word count is <strong>{this.props.gridSize}</strong> and each word can have <strong>{this.props.gridSize - 1}</strong> characters</div>
+        {/* <div> */}
+          <div id="setup-radio-input" onChange={this.props.onChangeGridSize}>
+            Grid Size:
+            <input type="radio" value='6' name="gridSize" id="radio_1" defaultChecked/>
+            <label for="radio_1">6x6</label>
+            <input type="radio" value='9' name="gridSize" id="radio_2"/>
+            <label for="radio_2">9x9</label>
+            <input type="radio" value='12' name="gridSize" id="radio_3"/>
+            <label for="radio_3">12x12</label>
+          </div>
           <form onSubmit={this.props.onSubmit}>
-            <div>
+            <div id="setup-textbox-container">
               {this.textBox()}
             </div>
             <input type="submit" value="create"/>
           </form>
-        </div>
-        <div onChange={this.props.onChangeGridSize}>
-          <label>
-            <input type="radio" value='6' name="gridSize" defaultChecked/>
-            6x6
-          </label>
-          <label>
-            <input type="radio" value='9' name="gridSize"/>
-            9x9
-          </label>
-          <label>
-            <input type="radio" value='12' name="gridSize"/>
-            12x12
-          </label>
-        </div>
+        {/* </div> */}
       </div>
     );
   }

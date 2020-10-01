@@ -21,7 +21,7 @@ class WordInput extends Component {
   }
   render(){
     return (
-      <input type='text' name='wordList' value={this.state.valueText} onChange={this.checkLetterOnly} maxLength= {this.props.maxSize} />
+      <input type='text' className="setup-textboxes" name='wordList' value={this.state.valueText} onChange={this.checkLetterOnly} maxLength= {this.props.maxSize} />
     );
   }
 }

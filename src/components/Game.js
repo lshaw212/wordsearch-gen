@@ -4,7 +4,7 @@ import WordList from './WordList'
 
 const Game = ({puzzle, mouseDown, mouseUp, words, foundWords, foundCoords, resetBtn}) => (
       
-  <div>
+  <div id="game-container">
     <div id="puzzle-grid">
       <WordGrid puzzle={puzzle} mouseDown={mouseDown} mouseUp={mouseUp} foundCoords={foundCoords}/>
       <WordList words={words} foundWords={foundWords}/>

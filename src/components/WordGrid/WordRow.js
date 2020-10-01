@@ -4,7 +4,7 @@ import WordCell from './WordCell';
 //figure out this issue
 
 const WordRow = ({puzzle, y, x, mouseDown, mouseUp, foundCoords}) => (
-  <div>
+  <div className="word-row">
     {puzzle.map((p, i) => (
       <WordCell
         key={i}

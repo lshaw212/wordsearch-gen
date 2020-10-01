@@ -6,7 +6,7 @@ let x = 0;
 
 const WordGrid = ({puzzle,mouseDown,mouseUp,foundCoords}) => (
       
-  <div id="puzzle">
+  <div id="word-grid">
     {puzzle.map((p, i) => (
       <WordRow
         key={i}

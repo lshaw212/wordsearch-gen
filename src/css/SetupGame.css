@@ -1,0 +1,47 @@
+#setup-container{
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+}
+
+#setup-header{
+font-size:1.5em;
+}
+#setup-desc{
+  /* display: flex; */
+  /* flex-direction: row; */
+  font-size:1em;
+}
+#setup-radio-input input {
+  position: fixed;
+  opacity: 0;
+  pointer-events: none;
+}
+#setup-radio-input label {
+  margin: 10px;
+  color: black;
+  border: 2px black solid;
+  font-size: 1.5rem;
+}
+#setup-radio-input input:checked + label{
+  color:red;
+}
+#setup-textbox-container{
+  /* border: 1px black solid; */
+  padding: 2px;
+  width: 700px;
+}
+.setup-textboxes{
+  margin: 20px 10px 0 10px;
+  padding: 0 10px 0 10px;
+  height: 30px;
+  width: 140px;
+  text-align: center;
+  outline: none;   
+  border: 1px solid #cdcdcd;
+  border-color: rgba(0,0,0,.15);
+  border-radius: 5px;
+  background-color: white;
+  font-size: 16px;
+}
