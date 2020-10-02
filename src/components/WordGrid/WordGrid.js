@@ -1,8 +1,7 @@
 import React from 'react';
 import WordRow from './WordRow';
 
-let y = 0;
-let x = 0;
+let y = 0, x = 0;
 
 const WordGrid = ({puzzle,mouseDown,mouseUp,foundCoords}) => (
       

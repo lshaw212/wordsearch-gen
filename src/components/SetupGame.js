@@ -2,16 +2,6 @@ import React, { Component } from 'react';
 import WordInput from './WordInput';
 
 class SetupGame extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      
-    }
-  }
-
-  componentDidMount(){
-    
-  }
 
   // Find better way of achieving this
   textBox = () => {

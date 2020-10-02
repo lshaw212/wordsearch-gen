@@ -16,17 +16,11 @@ class App extends Component {
       foundList: [''],
       pos1: ['',''],
       pos2: ['',''],
-      gameStart:false,
-      gameOver: false,
+      isGameStart:false,
+      isGameOver: false,
       coordsUsed: []
     }
     this.resetGame = this.resetGame.bind(this);
-  }
-
-  componentDidMount(){
-    // generatePuzzle(9,testArr);
-    // this.setState({puzzle:retrievePuzzle()})
-    // this.setState({wordList:testArr});
   }
 
   handleChangeGrid = (e) => {
@@ -46,7 +40,6 @@ class App extends Component {
     this.setState((state, props) => ({
       wordList: arr
     }), ()=>{
-      // console.log(this.state.wordList);
       this.startGame();
     });
   }
@@ -80,9 +73,8 @@ class App extends Component {
   foundWordTileColour(arr){
     let newArr = []
     for(let val of arr){
-      if(!this.state.coordsUsed.includes(val)){
+      if(!this.state.coordsUsed.includes(val))
         newArr.push(val)
-      }
     }
     this.setState({
       coordsUsed: [...this.state.coordsUsed, ...newArr]
@@ -92,14 +84,12 @@ class App extends Component {
   checkWinCondition(){
     if(this.state.wordList.length === this.state.foundList.length){
       alert("You won!");
-      this.setState({gameOver: true});
+      this.setState({isGameOver: true});
     }
   }
   startGame = () => {
     initalisePuzzle(this.state.gridSize,this.state.wordList);
-    // generatePuzzle(this.state.gridSize,this.state.wordList);
-    this.setState({puzzle:retrievePuzzle()})
-    this.setState({gameStart: true});
+    this.setState({puzzle:retrievePuzzle(),isGameStart: true})
   }
 
   resetGame(){
@@ -110,8 +100,8 @@ class App extends Component {
       foundList: [''],
       pos1: ['',''],
       pos2: ['',''],
-      gameStart: false, //rename to isGameStart
-      gameOver: false,
+      isGameStart: false,
+      isGameOver: false,
       coordsUsed: []
     });
   }
@@ -121,7 +111,7 @@ class App extends Component {
     return (
       <div className="App">
         <div id="word-search-header">Word Search</div>
-        {!this.state.gameStart
+        {!this.state.isGameStart
           ? <SetupGame
               startGame={this.startGame}
               onSubmit={this.handleSubmit.bind(this)}

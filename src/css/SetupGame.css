@@ -1,7 +1,6 @@
 #setup-container{
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
   align-items: center;
 }
 
@@ -9,8 +8,6 @@
 font-size:1.5em;
 }
 #setup-desc{
-  /* display: flex; */
-  /* flex-direction: row; */
   font-size:1em;
 }
 #setup-radio-input input {
@@ -21,7 +18,7 @@ font-size:1.5em;
 #setup-radio-input label {
   margin: 10px;
   color: black;
-  border: 2px black solid;
+  /* border: 2px black solid; */
   font-size: 1.5rem;
 }
 #setup-radio-input input:checked + label{

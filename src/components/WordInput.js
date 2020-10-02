@@ -11,10 +11,9 @@ class WordInput extends Component {
   
   // Check the input into the text box for what character it is.
   // Spaces, numbers and special characters are not allowed, only plain text letters
-  // @TODO: remove any captial letters
   checkLetterOnly = (e) => {
     let value = e.target.value
-    value = value.replace(/[^A-Za-z]/ig, '')
+    value = (value.replace(/[^A-Za-z]/ig, '')).toLowerCase();
     this.setState({
       valueText: value,
     });
