@@ -107,10 +107,10 @@ class App extends Component {
   }
 
   render(){
-    
     return (
       <div className="App">
-        <div id="word-search-header">Word Search</div>
+        <div id="word-search-header">WORD SEARCH</div>
+        <div id="website-link">by <a href="https://lewisshaw.dev" target="_blank">Lewis Shaw</a></div>
         {!this.state.isGameStart
           ? <SetupGame
               startGame={this.startGame}

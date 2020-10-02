@@ -7,28 +7,35 @@
   color: #0f0 !important;
   outline: solid #f00 1px !important;
 } */
+html{
+  height: 100%;
+}
 body {
   margin: 0;
-  font-family: 'Roboto', sans-serif;
+  /* height: 100vw; */
+  /* font-family: 'Roboto', sans-serif; */
+  font-family: 'Montserrat', sans-serif;
 
-  background: linear-gradient(306deg, #b7f8db, #50a7c2);
-  background-size: 400% 400%;
-  -webkit-animation: background-gradient 30s ease infinite;
-  -moz-animation: background-gradient 30s ease infinite;
-  animation: background-gradient 30s ease infinite;
+  /* background-color: #6f4f97; */
+  background: linear-gradient(322deg, #6f4f97, #d2c5e3);
+    background-size: 400% 400%;
+
+    -webkit-animation: AnimationName 19s ease infinite;
+    -moz-animation: AnimationName 19s ease infinite;
+    animation: AnimationName 19s ease infinite;
 }
-@-webkit-keyframes background-gradient {
-  0%{background-position:0% 50%}
-  50%{background-position:100% 50%}
-  100%{background-position:0% 50%}
+@-webkit-keyframes AnimationName {
+  0%{background-position:15% 0%}
+  50%{background-position:86% 100%}
+  100%{background-position:15% 0%}
 }
-@-moz-keyframes background-gradient {
-  0%{background-position:0% 50%}
-  50%{background-position:100% 50%}
-  100%{background-position:0% 50%}
+@-moz-keyframes AnimationName {
+  0%{background-position:15% 0%}
+  50%{background-position:86% 100%}
+  100%{background-position:15% 0%}
 }
-@keyframes background-gradient {
-  0%{background-position:0% 50%}
-  50%{background-position:100% 50%}
-  100%{background-position:0% 50%}
+@keyframes AnimationName {
+  0%{background-position:15% 0%}
+  50%{background-position:86% 100%}
+  100%{background-position:15% 0%}
 }

@@ -3,16 +3,26 @@
   display: flex;
   flex-direction: column;
   width: 100%;
+  height: 100%;
   align-items: center;
 }
 #word-search-header{
   font-size: 50px;
   color: white;
 }
+#website-link{
+
+}
+#website-link a{
+  text-decoration: none;
+  color: inherit;
+  font-weight: bold;
+  transition: all 200ms ease;
+}
+#website-link a:hover{
+  /* color: red; */
+  opacity: 40%;
+}
 .found{
   text-decoration: line-through;
-}
-
-.notFound{
-
 }

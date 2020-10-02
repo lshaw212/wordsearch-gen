@@ -1,4 +1,4 @@
-import { fwdCheck, backCheck, upCheck, downCheck, neCheck, seCheck, swCheck, nwCheck, findDirections } from './Orientations';
+import { findDirections, orientationCheck } from './Orientations';
 // Set letters to fill spots around the puzzle.
 // Look to generate letters based on common to the words the user is searchin for.
 
@@ -108,28 +108,28 @@ const direction = (word, pos, orientationList) => {
   switch(value)
   {
     case "forward":
-      fwdCheck(wordArr, puzzle, pos) // console.log("Word placed in FORWARD position");
+      orientationCheck['fwdCheck'](wordArr, puzzle, pos) // console.log("Word placed in FORWARD position");
       break;
     case "back":
-      backCheck(wordArr, puzzle, pos) // console.log("Word placed in BACK position");
+      orientationCheck['backCheck'](wordArr, puzzle, pos) // console.log("Word placed in BACK position");
       break;
     case "up":
-      upCheck(wordArr, puzzle, pos) // console.log("Word placed in UP position");
+      orientationCheck['upCheck'](wordArr, puzzle, pos) // console.log("Word placed in UP position");
       break;
     case "down":
-      downCheck(wordArr, puzzle, pos) // console.log("Word placed in DOWN position");
+      orientationCheck['downCheck'](wordArr, puzzle, pos) // console.log("Word placed in DOWN position");
       break;
     case "northEast":
-      neCheck(wordArr, puzzle, pos) // console.log("Word placed in NORTH EAST position");
+      orientationCheck['neCheck'](wordArr, puzzle, pos) // console.log("Word placed in NORTH EAST position");
       break;
     case "southEast":
-      seCheck(wordArr, puzzle, pos) // console.log("Word placed in SOUTH EAST position");
+      orientationCheck['seCheck'](wordArr, puzzle, pos) // console.log("Word placed in SOUTH EAST position");
       break;
     case "southWest":
-      swCheck(wordArr, puzzle, pos) // console.log("Word placed in SOUTH WEST position");
+      orientationCheck['swCheck'](wordArr, puzzle, pos) // console.log("Word placed in SOUTH WEST position");
       break;
     case "northWest":
-      nwCheck(wordArr, puzzle, pos) // console.log("Word placed in NORTH WEST position");
+      orientationCheck['nwCheck'](wordArr, puzzle, pos) // console.log("Word placed in NORTH WEST position");
       break;
     default:
       break; // console.log("we hit default");
