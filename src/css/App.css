@@ -6,12 +6,30 @@
   height: 100%;
   align-items: center;
 }
+.btn{
+  display:inline-block;
+  padding: 0.3em 1.2em;
+  margin:0 0.3em 0.3em 0;
+  border-radius:2em;
+  box-sizing: border-box;
+  text-decoration:none;
+  font-weight:300;
+  color: #2c2b2b;
+  background-color: #efefff;
+  border: 0;
+  text-align:center;
+  transition: all 0.2s;
+}
+.btn:hover{
+  background-color:#c1b5e1;
+}
 #word-search-header{
-  font-size: 50px;
+  font-size: 2.5em;
+  margin: 10px;
   color: white;
 }
 #website-link{
-
+ margin-bottom: 20px;
 }
 #website-link a{
   text-decoration: none;

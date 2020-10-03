@@ -6,7 +6,7 @@ class SetupGame extends Component {
   // Find better way of achieving this
   textBox = () => {
     let boxes = [];
-    for(let i=0; i<this.props.gridSize; i++){
+    for(let i=0; i<this.props.gridSize-1; i++){
       boxes.push(<WordInput key={i} maxSize={this.props.gridSize - 1}/>);
     }
     return boxes;
@@ -32,7 +32,7 @@ class SetupGame extends Component {
             <div id="setup-textbox-container">
               {this.textBox()}
             </div>
-            <input type="submit" value="create"/>
+            <input className="btn" type="submit" value="create"/>
           </form>
         {/* </div> */}
       </div>

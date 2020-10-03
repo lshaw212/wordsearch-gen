@@ -55,6 +55,17 @@
   outline:none;
   transition: all 200ms ease;
 }
+
+.font-size-6{
+  font: 4em sans-serif;
+}
+.font-size-9{
+  font: 2.5em sans-serif;
+}
+.font-size-12{
+  font: 1.5em sans-serif;
+}
+
 .puzzleSquare:hover{
   transform: scale(1.2);
 }
@@ -64,10 +75,10 @@
 }
 
 .foundCell{
-  /* background-color: ; */
-  /* opacity: .50; */
-  /* background-color: #282c34; */
-  color: red;
+  color: white;
+  background-color: #aaa5b7;
+  /* opacity: 0; */
+  transition: all 600ms ease;
 }
 #game-over-container{
   height: 200px;
@@ -81,7 +92,7 @@
 /* Word List */
 /*           */
 #word-list-container{
-  width: 10%;
+  width: 12%;
   margin: 15px;
   padding: 10px;
   display: flex;
@@ -106,7 +117,7 @@
 
 @media (max-width: 1000px){
   #game-container{
-    padding: 50px;
+    /* padding: 50px; */
     width: 90%;
   }
 }

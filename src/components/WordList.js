@@ -12,7 +12,7 @@ const WordList = ({words, foundWords, reset}) => (
       ))
       }
     </div>
-    <button onClick={reset}>Reset Game</button>
+    <button className="btn" onClick={reset}>Reset Game</button>
   </div>
 
 )

@@ -126,6 +126,7 @@ class App extends Component {
               words={this.state.wordList}
               foundWords={this.state.foundList}
               foundCoords={this.state.coordsUsed}
+              size={this.state.gridSize}
               resetBtn={this.resetGame}
             />
         }

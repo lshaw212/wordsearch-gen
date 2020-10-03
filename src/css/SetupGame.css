@@ -2,13 +2,17 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: #efefff;
+  border-radius: 25px;
 }
 
 #setup-header{
 font-size:1.5em;
+margin: 15px;
 }
 #setup-desc{
   font-size:1em;
+  margin-bottom: 15px;
 }
 #setup-radio-input input {
   position: fixed;
