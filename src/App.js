@@ -3,6 +3,7 @@ import { retrievePuzzle, initalisePuzzle } from './components/GameLogic/Generate
 import { checkWord } from './components/GameLogic/CheckWord';
 import SetupGame from './components/SetupGame';
 import Game from './components/Game';
+import Contact from './components/Contact';
 import './index.css';
 
 class App extends Component {
@@ -109,8 +110,7 @@ class App extends Component {
   render(){
     return (
       <div className="App">
-        <div id="word-search-header">WORD SEARCH</div>
-        <div id="website-link">by <a href="https://lewisshaw.dev" target="_blank">Lewis Shaw</a></div>
+        <div id="word-search-header" onClick={this.resetGame}>WORD SEARCH</div>
         {!this.state.isGameStart
           ? <SetupGame
               startGame={this.startGame}
@@ -130,6 +130,7 @@ class App extends Component {
               resetBtn={this.resetGame}
             />
         }
+        <Contact />
       </div>
     );
   }

@@ -32,7 +32,7 @@ class SetupGame extends Component {
             <div id="setup-textbox-container">
               {this.textBox()}
             </div>
-            <input className="btn" type="submit" value="create"/>
+            <button className="btn btn-spacing" type="submit">Create!</button>
           </form>
         {/* </div> */}
       </div>

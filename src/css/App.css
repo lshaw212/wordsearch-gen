@@ -14,32 +14,26 @@
   box-sizing: border-box;
   text-decoration:none;
   font-weight:300;
-  color: #2c2b2b;
-  background-color: #efefff;
+  color: #fdfdff;
+  background-color: #1b154b;
   border: 0;
   text-align:center;
+  cursor: pointer;
   transition: all 0.2s;
 }
 .btn:hover{
-  background-color:#c1b5e1;
+  background-color:#4c467d;
+}
+.btn-spacing{
+  margin: 7px 0 7px 0;
 }
 #word-search-header{
   font-size: 2.5em;
-  margin: 10px;
-  color: white;
-}
-#website-link{
- margin-bottom: 20px;
-}
-#website-link a{
-  text-decoration: none;
-  color: inherit;
-  font-weight: bold;
-  transition: all 200ms ease;
-}
-#website-link a:hover{
-  /* color: red; */
-  opacity: 40%;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  margin: 15px;
+  color: #1b154b;
+  cursor: pointer;
 }
 .found{
   text-decoration: line-through;

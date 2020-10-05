@@ -1,6 +1,7 @@
 @import './css/App.css';
 @import './css/SetupGame.css';
 @import './css/Game.css';
+@import './css/Contact.css';
 
 /* * {
   background: #000 !important;
@@ -16,13 +17,7 @@ body {
   /* font-family: 'Roboto', sans-serif; */
   font-family: 'Montserrat', sans-serif;
 
-  /* background-color: #6f4f97; */
-  background: linear-gradient(322deg, #6f4f97, #d2c5e3);
-    background-size: 400% 400%;
-
-    -webkit-animation: AnimationName 19s ease infinite;
-    -moz-animation: AnimationName 19s ease infinite;
-    animation: AnimationName 19s ease infinite;
+  background-color: #eff3f8;
 }
 @-webkit-keyframes AnimationName {
   0%{background-position:15% 0%}

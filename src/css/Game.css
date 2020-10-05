@@ -9,7 +9,7 @@
 #word-grid-container{
   display: flex;
   justify-content: center;
-  background-color: #efefff;
+  background-color: #fdfdff;
   border-radius: 25px 0 0 0;
   height: 100%;
   width: 100%;
@@ -20,6 +20,7 @@
   display: flex;
   flex-direction: column;
   border: 1px solid #2c2b2b;
+  border-radius: 27px;
   height: 600px;
   width: 600px;
 }
@@ -27,6 +28,12 @@
   width: 100%;
   margin: 0 auto;
 }
+/* Curve the corners of our puzzle grid */
+#word-grid .word-row:first-child .puzzleSquare:first-child{border-radius: 25px 0 0 0;}
+#word-grid .word-row:first-child .puzzleSquare:last-child{border-radius: 0 25px 0 0;}
+#word-grid .word-row:last-child .puzzleSquare:last-child{border-radius: 0 0 25px 0;}
+#word-grid .word-row:last-child .puzzleSquare:first-child{border-radius: 0 0 0 25px;}
+
 #text-rules-container{
   padding: 30px 10px 10px 10px;
   border-radius: 0 0 25px 25px;
@@ -49,7 +56,7 @@
   flex-grow: 1;
   width: 5vw;
   text-transform: uppercase;
-  border: 1px solid #2c2b2b;
+  border: 1.5px solid #2c2b2b;
   /* font: 4em sans-serif; */
   color: #2c2b2b;
   outline:none;
@@ -75,7 +82,7 @@
 }
 
 .foundCell{
-  color: white;
+  color: #fdfdff;
   background-color: #aaa5b7;
   /* opacity: 0; */
   transition: all 600ms ease;
@@ -93,16 +100,18 @@
 /*           */
 #word-list-container{
   width: 12%;
-  margin: 15px;
-  padding: 10px;
+  margin: 50px 35px 50px 35px;
+  padding: 10px 10px 10px 10px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  border-radius: 25px;
+  background-color: #aaa5b7;
 }
 #word-list-container > div {
   text-align: left;
   font-size: 1.25rem;
-  color: #2c2b2b;
+  color: #fdfdff;
 }
 .found{
   text-decoration: line-through;
