@@ -18,6 +18,15 @@ color: #1b154b;
   margin-bottom: 15px;
   color: #1b154b;
 }
+#setup-radio-input{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#setup-radio-input div {
+  font-size: 1.3em;
+  font-weight: 600;
+}
 #setup-radio-input input {
   position: fixed;
   opacity: 0;
@@ -27,11 +36,16 @@ color: #1b154b;
   margin: 10px;
   color: #1b154b;
   /* border: 2px black solid; */
+  background-color: #aaa5b7;
+  border-radius: 25%;
+  padding: 4px;
   cursor: pointer;
   font-size: 1.5rem;
+  transition: all 500ms ease;
 }
 #setup-radio-input input:checked + label{
-  color:red;
+  color: #fdfdff;
+  background-color: #1b154b;
 }
 #setup-textbox-container{
   /* border: 1px black solid; */
@@ -48,6 +62,6 @@ color: #1b154b;
   border: 1px solid #cdcdcd;
   border-color: rgba(0,0,0,.15);
   border-radius: 5px;
-  background-color: white;
+  background-color: #eff3f8;
   font-size: 16px;
 }

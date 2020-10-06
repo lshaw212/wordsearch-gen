@@ -14,6 +14,7 @@
   box-sizing: border-box;
   text-decoration:none;
   font-weight:300;
+  outline: none;
   color: #fdfdff;
   background-color: #1b154b;
   border: 0;

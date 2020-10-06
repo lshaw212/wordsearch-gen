@@ -12,7 +12,7 @@ class App extends Component {
     super(props);
     this.state = {
       puzzle: [],
-      gridSize: 6,
+      gridSize: 9,
       wordList: [''],
       foundList: [''],
       pos1: ['',''],
@@ -38,11 +38,14 @@ class App extends Component {
         arr.push(input[i].value);
       }
     }
-    this.setState((state, props) => ({
-      wordList: arr
-    }), ()=>{
-      this.startGame();
-    });
+    if(arr.length > 0){
+      this.setState((state, props) => ({
+        wordList: arr
+      }), ()=>{
+        this.startGame();
+      });
+    }
+    return
   }
 
   mouseDown = (e, x, y) => {
