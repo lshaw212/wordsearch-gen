@@ -3,22 +3,31 @@ import WordInput from './WordInput';
 import { wordGenerator } from './WordListCollection/wordListGen';
 
 class SetupGame extends Component {
-
+  
+  state={
+    values: []
+  }
   // Find better way of achieving this
   textBox = () => {
     let boxes = [];
     for(let i=0; i<this.props.gridSize-1; i++){
-      boxes.push(<WordInput key={i} maxSize={this.props.gridSize - 1}/>);
+      boxes.push(<WordInput key={i} maxSize={this.props.gridSize - 1} inputValue={this.state.values[i]}/>);
     }
     return boxes;
   }
 
-  fillBoxes = (size) => {
-    console.log(wordGenerator(size));
+  fillBoxes = () => {
+    let test = wordGenerator(this.props.gridSize)
+    this.setState({values: test});
   }
-
+  
   render(){
-    
+    // let boxes = [];
+    // for(let i=0; i<this.props.gridSize-1; i++){
+    //   console.log(this.state.values[i]);
+    //   boxes.push(<WordInput key={i} maxSize={this.props.gridSize - 1} inputValue="poop"/>);
+    // }
+    // console.log(this.state.values[0]);
     return (
       <div id="setup-container">
         <div id="setup-header">Pick the grid size and input the words you want in your game</div>
@@ -26,19 +35,20 @@ class SetupGame extends Component {
         {/* <div> */}
           <div id="setup-radio-input" onChange={this.props.onChangeGridSize}>
             <div>Grid Size:</div>
-            <input type="radio" value='6' name="gridSize" id="radio_1"/>
+            <input type="radio" value={6} name="gridSize" id="radio_1"/>
             <label for="radio_1">6x6</label>
-            <input type="radio" value='9' name="gridSize" id="radio_2" defaultChecked/>
+            <input type="radio" value={9} name="gridSize" id="radio_2" defaultChecked/>
             <label for="radio_2">9x9</label>
-            <input type="radio" value='12' name="gridSize" id="radio_3"/>
+            <input type="radio" value={12} name="gridSize" id="radio_3"/>
             <label for="radio_3">12x12</label>
           </div>
           <form onSubmit={this.props.onSubmit}>
             <div id="setup-textbox-container">
               {this.textBox()}
+              {/* {boxes} */}
             </div>
             <button className="btn btn-spacing" type="submit">Create!</button>
-            <button onClick={this.fillBoxes(this.props.gridSize)}>Fill</button>
+            <button onClick={this.fillBoxes} type="button">Fill</button>
           </form>
         {/* </div> */}
       </div>

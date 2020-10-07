@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
 
 class WordInput extends Component {
-
   constructor(props){
     super(props);
     this.state = {
-      valueText: ""
+      valueText: '' 
     }
   }
   
+  componentWillReceiveProps(nextProps){
+    this.setState({valueText:nextProps.inputValue});
+  }
+    
   // Check the input into the text box for what character it is.
   // Spaces, numbers and special characters are not allowed, only plain text letters
   checkLetterOnly = (e) => {

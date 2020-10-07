@@ -25,7 +25,7 @@ class App extends Component {
   }
 
   handleChangeGrid = (e) => {
-    this.setState({gridSize: e.target.value});
+    this.setState({gridSize: parseFloat(e.target.value)});
   }
 
   // Gather all inputs, filter out the empty strings and push all words into the array(while filtering out empty strings or duplicates)
@@ -99,7 +99,7 @@ class App extends Component {
   resetGame(){
     this.setState({
       puzzle: [],
-      gridSize: 6,
+      gridSize: 9,
       wordList: [''],
       foundList: [''],
       pos1: ['',''],
