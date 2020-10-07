@@ -28,25 +28,6 @@ class App extends Component {
     this.setState({gridSize: parseFloat(e.target.value)});
   }
 
-  // Gather all inputs, filter out the empty strings and push all words into the array(while filtering out empty strings or duplicates)
-  // The array is set to the wordList and we start the game
-  handleSubmit = (e) => {
-    e.preventDefault();
-    let arr = [], input = e.target.children[0].children;
-    for (let i = 0; i < input.length; i++){
-      if(input[i].value !== '' && !arr.includes(input[i].value)){
-        arr.push(input[i].value);
-      }
-    }
-    if(arr.length > 0){
-      this.setState((state, props) => ({
-        wordList: arr
-      }), ()=>{
-        this.startGame();
-      });
-    }
-    return
-  }
 
   mouseDown = (e, x, y) => {
     this.setState((state, props) => ({
@@ -91,9 +72,13 @@ class App extends Component {
       this.setState({isGameOver: true});
     }
   }
-  startGame = () => {
-    initalisePuzzle(this.state.gridSize,this.state.wordList);
-    this.setState({puzzle:retrievePuzzle(),isGameStart: true})
+  startGame = (arr) => {
+    this.setState((state, props) => ({
+      wordList: arr
+    }), ()=>{
+      initalisePuzzle(this.state.gridSize,this.state.wordList);
+      this.setState({puzzle:retrievePuzzle(),isGameStart: true})  
+    });
   }
 
   resetGame(){
@@ -117,7 +102,6 @@ class App extends Component {
         {!this.state.isGameStart
           ? <SetupGame
               startGame={this.startGame}
-              onSubmit={this.handleSubmit.bind(this)}
               onKey={(e) => this.onKeyPress(e)}
               onChangeGridSize={this.handleChangeGrid.bind(this)}
               gridSize={this.state.gridSize}
