@@ -29,7 +29,11 @@ class SetupGame extends Component {
   textBox = () => {
     let boxes = [];
     for(let i=0; i<this.props.gridSize-1; i++){
-      boxes.push(<WordInput key={i} maxSize={this.props.gridSize - 1} inputValue={this.state.values[i]? this.state.values[i] : ''}/>);
+      boxes.push(<WordInput 
+                  key={i}
+                  maxSize={this.props.gridSize - 1}
+                  inputValue={this.state.values[i]? this.state.values[i] : ''}
+                />);
     }
     return boxes;
   }
@@ -52,11 +56,11 @@ class SetupGame extends Component {
             <div id="setup-radio-input" onChange={this.props.onChangeGridSize}>
               <div>Grid Size:</div>
               <input type="radio" value={6} name="gridSize" id="radio_1"/>
-              <label for="radio_1" onClick={this.radioClick}>6x6</label>
+              <label htmlFor="radio_1" onClick={this.radioClick}>6x6</label>
               <input type="radio" value={9} name="gridSize" id="radio_2" defaultChecked/>
-              <label for="radio_2" onClick={this.radioClick}>9x9</label>
+              <label htmlFor="radio_2" onClick={this.radioClick}>9x9</label>
               <input type="radio" value={12} name="gridSize" id="radio_3"/>
-              <label for="radio_3" onClick={this.radioClick}>12x12</label>
+              <label htmlFor="radio_3" onClick={this.radioClick}>12x12</label>
             </div>
             <div id="setup-textbox-container">
               {this.textBox()}

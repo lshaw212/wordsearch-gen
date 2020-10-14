@@ -4,6 +4,7 @@ import { checkWord } from './components/GameLogic/CheckWord';
 import SetupGame from './components/SetupGame';
 import Game from './components/Game';
 import Contact from './components/Contact';
+import Modal from './components/Modal';
 import './index.css';
 
 class App extends Component {
@@ -68,8 +69,7 @@ class App extends Component {
 
   checkWinCondition(){
     if(this.state.wordList.length === this.state.foundList.length){
-      alert("You won!");
-      this.setState({isGameOver: true});
+      setTimeout(() =>this.setState({isGameOver: true}), 500 );
     }
   }
   startGame = (arr) => {
@@ -95,6 +95,13 @@ class App extends Component {
     });
   }
 
+
+  showModal = e => {
+    this.setState({
+      isGameOver: !this.state.isGameOver
+    });
+  };
+
   render(){
     return (
       <div className="App">
@@ -117,6 +124,7 @@ class App extends Component {
               resetBtn={this.resetGame}
             />
         }
+        <Modal onClose={this.showModal} show={this.state.isGameOver} resetGame={this.resetGame}/>
         <Contact />
       </div>
     );
