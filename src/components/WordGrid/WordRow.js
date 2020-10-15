@@ -1,7 +1,7 @@
 import React from 'react';
 import WordCell from './WordCell';
 
-const WordRow = ({puzzle, y, x, mouseDown, mouseUp, foundCoords, size}) => (
+const WordRow = ({puzzle, y, x, mouseClick, currentClick, foundCoords, size}) => (
   <div className="word-row">
     {puzzle.map((p, i) => (
       <WordCell
@@ -11,8 +11,8 @@ const WordRow = ({puzzle, y, x, mouseDown, mouseUp, foundCoords, size}) => (
         x={x+i}
         foundCoords={foundCoords}
         size={size}
-        mouseDown={mouseDown}
-        mouseUp={mouseUp}
+        mouseClick={mouseClick}
+        currentClick={currentClick}
       />
     ))
     }

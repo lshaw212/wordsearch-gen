@@ -3,11 +3,11 @@ import WordGrid from './WordGrid/WordGrid';
 import WordList from './WordList'
 import TextRules from './TextRules';
 
-const Game = ({puzzle, mouseDown, mouseUp, words, foundWords, foundCoords, size, resetBtn}) => (
+const Game = ({puzzle, mouseClick, currentClick, words, foundWords, foundCoords, size, resetBtn}) => (
       
   <div id="game-container">
     <div id="puzzle-grid">
-      <WordGrid puzzle={puzzle} mouseDown={mouseDown} mouseUp={mouseUp} foundCoords={foundCoords} size={size}/>
+      <WordGrid puzzle={puzzle} mouseClick={mouseClick} foundCoords={foundCoords} size={size} currentClick={currentClick}/>
       <WordList words={words} foundWords={foundWords} reset={resetBtn}/>
     </div>
     <div>

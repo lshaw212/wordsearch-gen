@@ -3,7 +3,7 @@ import WordRow from './WordRow';
 
 let y = 0, x = 0;
 
-const WordGrid = ({puzzle,mouseDown,mouseUp,foundCoords,size}) => (
+const WordGrid = ({puzzle,mouseClick, currentClick,foundCoords,size}) => (
   
   <div id="word-grid-container">
     <div id="word-grid">
@@ -15,9 +15,9 @@ const WordGrid = ({puzzle,mouseDown,mouseUp,foundCoords,size}) => (
           y={y+i}
           x={x}
           foundCoords={foundCoords}
-          mouseDown={mouseDown}
+          mouseClick={mouseClick}
           size={size}
-          mouseUp={mouseUp}
+          currentClick={currentClick}
         />
       ))
       }

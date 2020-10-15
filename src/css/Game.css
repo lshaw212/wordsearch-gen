@@ -87,6 +87,9 @@
   /* opacity: 0; */
   transition: all 600ms ease;
 }
+.selectedCell{
+  transform: scale(1.2);
+}
 #game-over-container{
   height: 200px;
   width: 600px;
@@ -115,9 +118,6 @@
 }
 .found{
   text-decoration: line-through;
-}
-.notFound{
-
 }
 /*                   */
 /* Game Instructions */

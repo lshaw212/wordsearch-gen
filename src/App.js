@@ -16,8 +16,8 @@ class App extends Component {
       gridSize: 9,
       wordList: [''],
       foundList: [''],
-      pos1: ['',''],
-      pos2: ['',''],
+      pos1: '',
+      pos2: '',
       isGameStart:false,
       isGameOver: false,
       coordsUsed: []
@@ -30,19 +30,41 @@ class App extends Component {
   }
 
 
-  mouseDown = (e, x, y) => {
-    this.setState((state, props) => ({
-      pos1:[x,y]
-   }), ()=>{
-     //after callback 
-   });
-  }
-  mouseUp = (e, x, y) => {
-    this.setState((state, props) => ({
-      pos2:[x,y]
-   }), ()=>{
-    this.checkPositions();
-   });
+  // Decide which implementation works best
+
+  // mouseDown = (e, x, y) => {
+  //   this.setState((state, props) => ({
+  //     pos1:[x,y]
+  //  }), ()=>{
+  //    //after callback 
+  //  });
+  // }
+  // mouseUp = (e, x, y) => {
+  //   this.setState((state, props) => ({
+  //     pos2:[x,y]
+  //  }), ()=>{
+  //   this.checkPositions();
+  //  });
+  // }
+
+  mouseClick = (e, x, y) => {
+    if(this.state.pos1 == ''){
+      this.setState((state, props) => ({
+        pos1:[x,y]
+     }), ()=>{
+       console.log(this.state.pos1);
+       console.log("callback");
+       //after callback 
+     });
+    } else {
+      console.log("!");
+      this.setState((state, props) => ({
+        pos2:[x,y]
+      }), ()=>{
+        this.checkPositions();
+      });
+    }
+    console.log(this.state);
   }
 
   checkPositions = () => {
@@ -54,6 +76,7 @@ class App extends Component {
     } else {
       // word not in list
     }
+    this.setState({pos1: '', pos2:''});
   }
 
   foundWordTileColour(arr){
@@ -87,8 +110,8 @@ class App extends Component {
       gridSize: 9,
       wordList: [''],
       foundList: [''],
-      pos1: ['',''],
-      pos2: ['',''],
+      pos1: '',
+      pos2: '',
       isGameStart: false,
       isGameOver: false,
       coordsUsed: []
@@ -115,8 +138,10 @@ class App extends Component {
             />
           : <Game 
               puzzle={this.state.puzzle}
-              mouseDown={this.mouseDown}
-              mouseUp={this.mouseUp}
+              mouseClick={this.mouseClick}
+              // mouseDown={this.mouseDown}
+              // mouseUp={this.mouseUp}
+              currentClick={this.state.pos1}
               words={this.state.wordList}
               foundWords={this.state.foundList}
               foundCoords={this.state.coordsUsed}
