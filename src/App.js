@@ -10,7 +10,7 @@ import './index.css';
 class App extends Component {
 
   constructor(props){
-    super(props);
+    super(props);  
     this.state = {
       puzzle: [],
       gridSize: 9,
@@ -24,18 +24,22 @@ class App extends Component {
     }
     this.resetGame = this.resetGame.bind(this);
   }
+  
 
+  // This changes the size of the gride for our setup game
   handleChangeGrid = (e) => {
     this.setState({gridSize: parseFloat(e.target.value)});
   }
+
+  // For the mouseclicks, we update and store informaton about the first and second cell position. 
+  // we start by checking to see if this is the first mouse click and update the state accordingly
+  // if this is the second click we check the positions to see if a word has been found.
 
   mouseClick = (e, x, y) => {
     if(this.state.pos1 === ''){
       this.setState((state, props) => ({
         pos1:[x,y]
      }), ()=>{
-       console.log(this.state.pos1);
-       console.log("callback");
        //after callback 
      });
     } else {
@@ -46,9 +50,10 @@ class App extends Component {
         this.checkPositions();
       });
     }
-    console.log(this.state);
   }
 
+  // When two positions have been selected by a user, we check these positions to see if a word is possible and then if the word is in our word list.
+  // If a word is found, we set the state for our foundlist, colour the cells for the word and then check if we have a win condition. 
   checkPositions = () => {
     let word = checkWord(this.state.puzzle, this.state.pos1, this.state.pos2);
     if(word!==undefined && this.state.wordList.includes(word.value) && !this.state.foundList.includes(word.value)){
@@ -61,6 +66,7 @@ class App extends Component {
     this.setState({pos1: '', pos2:''});
   }
 
+  // We store the coordinates of found cells so we can pass this to each cell to know if it needs to be updated via CSS
   foundWordTileColour(arr){
     let newArr = []
     for(let val of arr){
@@ -72,11 +78,14 @@ class App extends Component {
     });
   }
 
+  // We check to see if the game has been finished
   checkWinCondition(){
     if(this.state.wordList.length === this.state.foundList.length){
       setTimeout(() =>this.setState({isGameOver: true}), 500 );
     }
   }
+
+  // Start game, sets the word list and initalises the puzzle to be played
   startGame = (arr) => {
     this.setState((state, props) => ({
       wordList: arr
@@ -86,6 +95,7 @@ class App extends Component {
     });
   }
 
+  // Reset game to play gain
   resetGame(){
     this.setState({
       puzzle: [],
@@ -101,6 +111,7 @@ class App extends Component {
   }
 
 
+  // adapt and change this implementation
   showModal = e => {
     this.setState({
       isGameOver: !this.state.isGameOver

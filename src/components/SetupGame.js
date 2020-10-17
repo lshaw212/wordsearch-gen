@@ -25,7 +25,8 @@ class SetupGame extends Component {
     return
   }
 
-  // Find better way of achieving this
+  // We create an array of WordInput components based on ther gridsize.
+  // Where we then render the array to be viewed.
   textBox = () => {
     let boxes = [];
     for(let i=0; i<this.props.gridSize-1; i++){
@@ -38,11 +39,13 @@ class SetupGame extends Component {
     return boxes;
   }
 
-  fillBoxes = () => {
-    let test = wordGenerator(this.props.gridSize)
-    this.setState({values: test});
+  // Generates random words to fill up all the values.
+  generateWords = () => {
+    let randomWords = wordGenerator(this.props.gridSize)
+    this.setState({values: randomWords});
   }
 
+  // on changing the grid size we clear the values of the text boxes.
   radioClick = () => {
     this.setState({values: []});
   }
@@ -65,17 +68,12 @@ class SetupGame extends Component {
             <div id="setup-textbox-container">
               {this.textBox()}
             </div>
-            <button className="btn" onClick={this.fillBoxes} type="button">Generate Random Words</button>
+            <button className="btn" onClick={this.generateWords} type="button">Generate Random Words</button>
             <button className="btn btn-spacing" type="submit">Create!</button>
           </form>
       </div>
     );
   }
 }
-// const SetupGame = ({gridSize, onSubmit, onChangeGridSize, onKey}) => (
-      
-  
-
-// )
 
 export default SetupGame;

@@ -4,7 +4,6 @@ class Modal extends Component{
 
 
   onClose = e => {
-    console.log("?");
     this.props.onClose && this.props.onClose(e);
     this.props.resetGame();
   }

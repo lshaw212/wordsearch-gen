@@ -21,7 +21,7 @@ let puzzle, orientationList = [];
 
 let usedOrientations = [];
 
-export const setEmptyPuzzle = (size) => {
+const setEmptyPuzzle = (size) => {
   let puzzle = [];
   for (let i = 0; i < size; i++) {
     puzzle.push([]);
@@ -45,7 +45,7 @@ export const initalisePuzzle = (size, words) => {
 // This function generates the puzzle in an array.
 // We take all the words and put them into the addWord function.
 // After all our words have been added, we fill up the array with random words.
-export const generatePuzzle = (size, words) => {
+const generatePuzzle = (size, words) => {
   // let result;
   puzzle=setEmptyPuzzle(size);
   for (let i = 0; i < words.length; i++) {
@@ -56,7 +56,7 @@ export const generatePuzzle = (size, words) => {
 
 // ISSUES:
 // if position is valid, but you can't find directions, the word is skipped.
-export const addWord = (size, word) => {
+const addWord = (size, word) => {
 
   // return new Promise((resolve, reject) => {
     let wordPlaced = false, attempts = 0;
@@ -163,28 +163,3 @@ const fillPuzzle = (puzzle) => {
   }
   return puzzle;
 }
-
-
-
-
-
-
-
-
-
-    // mainLoop:
-    // for(let i = 0; i < 10; i++){
-    //   for (let j = 0; j < usedOrientations.length; j++){
-    //     if(usedOrientations[j].count === i && orientationList.includes(usedOrientations[j].Orientation)){
-    //       rnd = usedOrientations[j].Orientation;
-    //       // usedOrientations = usedOrientations.map(el => el.Orientation == rnd ? {...el, count: []})
-    //       let newOri = usedOrientations.map(el => {
-    //                                     if(el.Orientation == rnd)
-    //                                         return Object.assign({}, el, {count: el.count+1});
-    //                                     return el
-    //       });
-    //       // Break out of the loop early
-    //       break mainLoop;
-    //     }
-    //   }
-    // }
