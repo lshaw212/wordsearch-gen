@@ -46,10 +46,10 @@ export const initalisePuzzle = (size, words) => {
 // We take all the words and put them into the addWord function.
 // After all our words have been added, we fill up the array with random words.
 export const generatePuzzle = (size, words) => {
-  let result;
+  // let result;
   puzzle=setEmptyPuzzle(size);
   for (let i = 0; i < words.length; i++) {
-    result = addWord(size, words[i])
+    addWord(size, words[i])
     }
   return puzzle;
 }

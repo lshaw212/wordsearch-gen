@@ -29,26 +29,8 @@ class App extends Component {
     this.setState({gridSize: parseFloat(e.target.value)});
   }
 
-
-  // Decide which implementation works best
-
-  // mouseDown = (e, x, y) => {
-  //   this.setState((state, props) => ({
-  //     pos1:[x,y]
-  //  }), ()=>{
-  //    //after callback 
-  //  });
-  // }
-  // mouseUp = (e, x, y) => {
-  //   this.setState((state, props) => ({
-  //     pos2:[x,y]
-  //  }), ()=>{
-  //   this.checkPositions();
-  //  });
-  // }
-
   mouseClick = (e, x, y) => {
-    if(this.state.pos1 == ''){
+    if(this.state.pos1 === ''){
       this.setState((state, props) => ({
         pos1:[x,y]
      }), ()=>{

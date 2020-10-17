@@ -7,7 +7,7 @@ class SetupGame extends Component {
   state={
     values: []
   }
-
+  
   // Gather all inputs, filter out the empty strings and push all words into the array(while filtering out empty strings or duplicates)
   // The array is set to the wordList and we start the game
   handleSubmit = (e) => {

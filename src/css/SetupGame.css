@@ -8,10 +8,10 @@
 }
 
 #setup-header{
-font-size:1.5em;
-font-weight: 500;
-margin: 15px;
-color: #1b154b;
+  font-size:1.5em;
+  font-weight: 500;
+  margin: 15px;
+  color: #1b154b;
 }
 #setup-desc{
   font-size:1em;
@@ -41,7 +41,11 @@ color: #1b154b;
   padding: 4px;
   cursor: pointer;
   font-size: 1.5rem;
-  transition: all 500ms ease;
+  transition: all 0.2s ease;
+}
+#setup-radio-input label:hover {
+  color: #fdfdff;
+  background-color:#4c467d;
 }
 #setup-radio-input input:checked + label{
   color: #fdfdff;

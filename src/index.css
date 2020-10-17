@@ -1,6 +1,7 @@
 @import './css/App.css';
 @import './css/SetupGame.css';
 @import './css/Game.css';
+@import './css//WordList.css';
 @import './css/Contact.css';
 @import './css/Modal.css';
 
@@ -9,12 +10,11 @@
   color: #0f0 !important;
   outline: solid #f00 1px !important;
 } */
-html{
-  height: 100%;
-}
-body {
+html, body {
   margin: 0;
-  /* height: 100vw; */
+  padding: 0;
+  height: 100%;
+  width: 100%;
   /* font-family: 'Roboto', sans-serif; */
   font-family: 'Montserrat', sans-serif;
 

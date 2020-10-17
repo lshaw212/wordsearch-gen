@@ -1,0 +1,43 @@
+#word-list-container{
+  /* width: auto; */
+  width: 150px;
+  margin: 50px 35px 50px 35px;
+  padding: 15px 15px 15px 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 25px;
+  background-color: #aaa5b7;
+}
+#word-list-container > div {
+  text-align: left;
+  width: auto;
+  /* font-size: 1.25rem; */
+  font-size: 1em;
+  color: #fdfdff;
+}
+.found{
+  text-decoration: line-through;
+}
+
+@media (max-width: 1000px){
+  #word-list-container{
+    display: flex;
+    height: 80px;
+    width: auto;
+    margin: 15px;
+  }
+  #word-list{
+    display: flex;
+    flex-direction: column;
+    height: 80%;
+    width: 100%;
+    flex-wrap: wrap;
+  }
+  #word-list-container .btn{
+    width: 150px;
+  }
+  #word-list-container > div {
+    font-size: 1em;
+  }
+}

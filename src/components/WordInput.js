@@ -12,7 +12,7 @@ class WordInput extends Component {
   // but we only want to update the state if the values are..
   // ADD MORE INFORMATION ON THIS.
   static getDerivedStateFromProps(nextProps, prevState){
-    if(prevState.propsText !== nextProps.inputValue || prevState.valueText == prevState.propsText){
+    if(prevState.propsText !== nextProps.inputValue || prevState.valueText === prevState.propsText){
       return {
         valueText: nextProps.inputValue,
         propsText: nextProps.inputValue
@@ -24,7 +24,7 @@ class WordInput extends Component {
   // Spaces, numbers and special characters are not allowed, only plain text letters
   checkLetterOnly = (e) => {
     let value = e.target.value
-    value = (value.replace(/[^A-Za-z]/ig, '')).toLowerCase();
+    value = (value.replace(/[^A-Za-z]/ig, '')).toUpperCase();
     this.setState({
       valueText: value,
     });

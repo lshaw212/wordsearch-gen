@@ -10,9 +10,7 @@ const Game = ({puzzle, mouseClick, currentClick, words, foundWords, foundCoords,
       <WordGrid puzzle={puzzle} mouseClick={mouseClick} foundCoords={foundCoords} size={size} currentClick={currentClick}/>
       <WordList words={words} foundWords={foundWords} reset={resetBtn}/>
     </div>
-    <div>
-      <TextRules />
-    </div>
+    <TextRules />
   </div>
 
 )
