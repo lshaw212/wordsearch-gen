@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { retrievePuzzle, initalisePuzzle } from './components/GameLogic/GenerateGrid';
+import { retrievePuzzle, initalisePuzzle, generatePuzzle } from './components/GameLogic/GenerateGrid';
 import { checkWord } from './components/GameLogic/CheckWord';
 import SetupGame from './components/SetupGame';
 import Game from './components/Game';
@@ -53,11 +53,18 @@ class App extends Component {
   }
 
   // When two positions have been selected by a user, we check these positions to see if a word is possible and then if the word is in our word list.
-  // If a word is found, we set the state for our foundlist, colour the cells for the word and then check if we have a win condition. 
+  // If a word is found, we set the state for our foundlist, colour the cells for the word and then check if we have a win condition.
+  // Refactor for a better way of handeling a word that is reveresed, DRY code at the moment.
   checkPositions = () => {
     let word = checkWord(this.state.puzzle, this.state.pos1, this.state.pos2);
-    if(word!==undefined && this.state.wordList.includes(word.value) && !this.state.foundList.includes(word.value)){
-      this.setState({foundList: [...this.state.foundList, word.value]});
+    console.log(word);
+    if(word!==undefined && ((this.state.wordList.includes(word.value)) || this.state.wordList.includes(word.reversedValue)) && (!this.state.foundList.includes(word.value))){
+      if(this.state.wordList.includes(word.value)){
+        this.setState({foundList: [...this.state.foundList, word.value]});
+      }
+      if(this.state.wordList.includes(word.reversedValue)){
+        this.setState({foundList: [...this.state.foundList, word.reversedValue]});
+      }
       this.foundWordTileColour(word.posArr);
       this.checkWinCondition()
     } else {
@@ -90,8 +97,13 @@ class App extends Component {
     this.setState((state, props) => ({
       wordList: arr
     }), ()=>{
-      initalisePuzzle(this.state.gridSize,this.state.wordList);
-      this.setState({puzzle:retrievePuzzle(),isGameStart: true})  
+      let initalisePuzzle = generatePuzzle(this.state.gridSize,this.state.wordList, 5)
+      if(initalisePuzzle){
+        console.log("THE GAME HAS BEGUN");
+        this.setState({puzzle:retrievePuzzle(),isGameStart: true})  
+      } else {
+        console.log("The game will not begin");
+      }   
     });
   }
 
@@ -142,7 +154,14 @@ class App extends Component {
               resetBtn={this.resetGame}
             />
         }
-        <Modal onClose={this.showModal} show={this.state.isGameOver} resetGame={this.resetGame}/>
+        <Modal
+          header="Word Search Completed!"
+          btnText="Play Again?"
+          onClose={this.showModal}
+          show={this.state.isGameOver}
+          resetGame={this.resetGame}
+        
+        />
         <Contact />
       </div>
     );

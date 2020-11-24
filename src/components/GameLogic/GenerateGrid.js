@@ -38,27 +38,45 @@ export const retrievePuzzle = () => {
 }
 
 export const initalisePuzzle = (size, words) => {
-  let puzzle = generatePuzzle(size, words);
-    fillPuzzle(puzzle);
+  let puzzle = generatePuzzle(size, words, 5);
+  
+  fillPuzzle(puzzle);
 }
 
 // This function generates the puzzle in an array.
 // We take all the words and put them into the addWord function.
 // After all our words have been added, we fill up the array with random words.
-const generatePuzzle = (size, words) => {
-  // let result;
-  puzzle=setEmptyPuzzle(size);
-  for (let i = 0; i < words.length; i++) {
-    addWord(size, words[i])
+// ********************************************************
+// 
+export const generatePuzzle = (size, words, retryCount) => {
+  let result, retry = retryCount;
+  console.log(retry);
+  retryStatment: if(retry >=0){
+    puzzle=setEmptyPuzzle(size);
+    console.log("This is the retry if statement " + retry);
+    for (let i = 0; i < words.length; i++) {
+      result = addWord(size, words[i]);
+      console.log(result);
+      if(result === false){
+        retry--;
+        generatePuzzle(size, words, retry);
+        break retryStatment;
+      }
     }
-  return puzzle;
+    console.log("puzzle is true? " + retry);
+    fillPuzzle(puzzle);
+    return true;
+  } else {
+    console.log("*****************NOPE****************** " + retry);
+    return false;
+  }
+  
 }
 
 // ISSUES:
 // if position is valid, but you can't find directions, the word is skipped.
 const addWord = (size, word) => {
 
-  // return new Promise((resolve, reject) => {
     let wordPlaced = false, attempts = 0;
     while(!wordPlaced && attempts < 100){
       //Issues only uses a static 9 for size
@@ -74,13 +92,13 @@ const addWord = (size, word) => {
             // console.log("ADDING WORD: " + word + " " + pos);
             wordPlaced = true;
           } else {
-            // console.log("Word can't be placed");
+            // console.log("Word can't be placed"); can delete this
           }
           
       } else {
-        // console.log("Area Checked: CANNOT PLACE WORD");
+        // console.log("Area Checked: CANNOT PLACE WORD"); can delete this
       }
-      // console.log(attempts);
+      console.log(word + "  :  " + attempts);
     }
     if(attempts < 100)
       return true;

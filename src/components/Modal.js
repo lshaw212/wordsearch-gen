@@ -15,11 +15,11 @@ class Modal extends Component{
     return(
       <div className="modal">
         <div id="gameover-modal">
-          <h2>Word Search Completed!</h2>
+          <h2>{this.props.header}</h2>
           <div className="content">You won the game!</div>
           <div className="actions">
             <button className=" btn toggle-button" onClick={this.onClose}>
-              Play Again?
+              {this.props.btnText}
             </button>
           </div>
         </div>

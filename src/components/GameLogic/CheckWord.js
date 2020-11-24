@@ -18,7 +18,8 @@ export const checkWord = (puzzle, pos1, pos2) => {
         posArr.push([(pos1[1]+(y*i)),(pos1[0]+(x*i))]);
         value = value + puzzle[(pos1[1]+(y*i))][(pos1[0]+(x*i))]
       }
-      let wordData = {value, posArr}
+      let reversedValue = reverseString(value);
+      let wordData = {value, reversedValue, posArr}
       return wordData;
     }
     if(yDiff<0 && xDiff < 0) // UP + RIGHT: Negative X, Negative Y
@@ -40,4 +41,8 @@ export const checkWord = (puzzle, pos1, pos2) => {
   } else {
     console.log("NOT A VALID ORIENTATION");
   }
+}
+
+const reverseString = (str) =>{
+  return str.split("").reverse().join("");
 }
