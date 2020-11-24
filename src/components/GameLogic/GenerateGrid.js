@@ -50,24 +50,24 @@ export const initalisePuzzle = (size, words) => {
 // 
 export const generatePuzzle = (size, words, retryCount) => {
   let result, retry = retryCount;
-  console.log(retry);
+  // console.log(retry);
   retryStatment: if(retry >=0){
     puzzle=setEmptyPuzzle(size);
-    console.log("This is the retry if statement " + retry);
+    // console.log("This is the retry if statement " + retry);
     for (let i = 0; i < words.length; i++) {
       result = addWord(size, words[i]);
-      console.log(result);
+      // console.log(result);
       if(result === false){
         retry--;
         generatePuzzle(size, words, retry);
         break retryStatment;
       }
     }
-    console.log("puzzle is true? " + retry);
+    // console.log("puzzle is true? " + retry);
     fillPuzzle(puzzle);
     return true;
   } else {
-    console.log("*****************NOPE****************** " + retry);
+    // console.log("*****************NOPE****************** " + retry);
     return false;
   }
   
@@ -98,7 +98,7 @@ const addWord = (size, word) => {
       } else {
         // console.log("Area Checked: CANNOT PLACE WORD"); can delete this
       }
-      console.log(word + "  :  " + attempts);
+      // console.log(word + "  :  " + attempts);
     }
     if(attempts < 100)
       return true;

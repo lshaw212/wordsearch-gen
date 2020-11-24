@@ -43,7 +43,7 @@ class App extends Component {
        //after callback 
      });
     } else {
-      console.log("!");
+      // console.log("!");
       this.setState((state, props) => ({
         pos2:[x,y]
       }), ()=>{
@@ -57,7 +57,7 @@ class App extends Component {
   // Refactor for a better way of handeling a word that is reveresed, DRY code at the moment.
   checkPositions = () => {
     let word = checkWord(this.state.puzzle, this.state.pos1, this.state.pos2);
-    console.log(word);
+    // console.log(word);
     if(word!==undefined && ((this.state.wordList.includes(word.value)) || this.state.wordList.includes(word.reversedValue)) && (!this.state.foundList.includes(word.value))){
       if(this.state.wordList.includes(word.value)){
         this.setState({foundList: [...this.state.foundList, word.value]});
@@ -99,10 +99,10 @@ class App extends Component {
     }), ()=>{
       let initalisePuzzle = generatePuzzle(this.state.gridSize,this.state.wordList, 5)
       if(initalisePuzzle){
-        console.log("THE GAME HAS BEGUN");
+        // console.log("THE GAME HAS BEGUN");
         this.setState({puzzle:retrievePuzzle(),isGameStart: true})  
       } else {
-        console.log("The game will not begin");
+        // console.log("The game will not begin");
       }   
     });
   }
